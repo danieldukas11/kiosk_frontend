@@ -1,0 +1,26 @@
+.wrapper{
+    .hr{
+        width:calc(100% - 120px);
+        height:0;
+        border-bottom:2px solid #F2AC21;
+        margin:0 auto 60px auto
+    }
+    .header-text{
+        font-family: roboto;
+        font-weight: bold;
+        font-size:80px;
+        outline: 0;
+        text-align:center;
+        color:#5E5B58;
+        margin:60px 0 60px 0
+    }
+    .back-img{
+        position:fixed;
+        display: block;
+        height:calc(100% - 318px);
+        width:calc(100% - 120px);
+        left:60px;
+        margin:auto
+    }
+    background-color: white
+}

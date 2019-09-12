@@ -1,0 +1,43 @@
+
+<div #wrapper class="wrapper">
+    <app-combo-menu></app-combo-menu>
+    <!--<div class="menu-wrapper">        
+        <div class="top-botton" (click)="gotoTop()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="32" viewBox="0 0 14 32">
+                <defs>
+                    <style>.a{fill:#5e5b58;}</style>
+                </defs>
+                <g transform="translate(14) rotate(90)">
+                    <path class="a" d="M.185,143.579,7.3,137.2a.6.6,0,0,1,.648-.091.529.529,0,0,1,.352.529v4.084H31.407a.581.581,0,0,1,.426.164A.564.564,0,0,1,32,142.3v3.5a.562.562,0,0,1-.167.419.582.582,0,0,1-.426.164H8.3v4.084a.549.549,0,0,1-.352.529.584.584,0,0,1-.648-.109L.185,144.435A.591.591,0,0,1,0,144,.572.572,0,0,1,.185,143.579Z" transform="translate(0 -137.052)"/>
+                </g>
+            </svg>
+        </div>
+        <div class="menu-title">Select a Product </div>        
+        <div *ngFor="let item of menu" class="menu-list">
+            <div class="menu-item">                
+                <div class="item-text">{{item.title| uppercase}}</div>
+            </div>
+            <div class="product-wrapper">
+                <div class="product" *ngFor="let product of item.products" (click)="getProduct(product)">
+                    <img [src]="imgUrl+product.image" alt="" class="product-img">
+                    <div class="product-text">{{product.title| titlecase}}</div>                  
+                    <div class="product-data-price">$ {{product.price}}</div>                           
+                </div> 
+                <div style=" border:12px solid transparent"></div>                               
+            </div> 
+            
+        </div>  
+        <div class="hr"></div>  
+        <div class="bottom-button" (click)='gotoBottom()'>            
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="32" viewBox="0 0 14 32">
+                <defs>
+                    <style>.a{fill:#5e5b58;}</style>
+                </defs>
+                <g transform="translate(0 32) rotate(-90)">
+                    <path class="a" d="M.185,7.472,7.3,13.853a.6.6,0,0,0,.648.091.529.529,0,0,0,.352-.529V9.332H31.407a.581.581,0,0,0,.426-.164A.564.564,0,0,0,32,8.749v-3.5a.562.562,0,0,0-.167-.419.582.582,0,0,0-.426-.164H8.3V.582A.549.549,0,0,0,7.944.053.584.584,0,0,0,7.3.162L.185,6.616A.591.591,0,0,0,0,7.054.572.572,0,0,0,.185,7.472Z"/>
+                </g>
+            </svg>
+                
+        </div>    
+    </div>-->       
+</div>

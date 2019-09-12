@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <div class="logo"><img [src]="imgUrl+'logo.png'" alt="" srcset=""></div>
+    <div class="pay-head">Payment details</div>
+    <div class="payment-wrapper" *ngIf="orders.length">
+        <div class="product-detail">
+            
+            <ol style="padding:0 0 0 16px" >
+                <li class="ordered-product" *ngFor='let order of orders' >                           
+                    <div class="ordered-product-detail">                                                      
+                        <div>
+                            <div>
+                                <div>{{order.title}}</div>                                 
+                                <div class="quant-control">                                    
+                                    <div class="minus" (click)="removeProd(order.id)" >
+                                        <i class="fal  fa-minus"></i>
+                                    </div>
+                                    <div class="prod-quant">{{order.quantity}}</div>
+                                    <div class="plus" (click)="addProd(order.id)">
+                                        <i class="fal fa-plus"></i>                                                                                
+                                    </div>
+                                </div>
+                            </div>
+                            <div><span *ngFor="let ingr of order.ingrs" style="display: inline; font-size:12px">{{ingr.title}}<span *ngIf='ingr.quantity' style="display: inline; font-size:12px">({{ingr.quantity}})</span>, </span></div>
+                        </div>
+                        <div style='line-height:1.5'>$ {{getPrice(order)}}</div>
+                    </div>                    
+                </li>                
+            </ol>
+        </div>
+        <div class="payment-detail">
+            <div class="total">
+                <div>TOTAL</div>
+                <div>$ {{getTotal()}}</div>
+            </div>
+            <div class="tax">
+                <div>TAX</div>
+                <div>$ {{getTax()}}</div>
+            </div>
+        </div> 
+        <div class="final-pay-container">
+            <div>Pay This Amount</div>
+            <div>$ {{getPay()}}</div>
+        </div>
+        <div class="button-container">
+            <button [routerLink]="['/']">Cancel Order</button>
+            <button>Pay $12.9</button>
+        </div>
+    </div>    
+    <button class="back-bttn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="14" viewBox="0 0 32 14">
+                <defs>
+                    <style>.a{fill:#5e5b58;}</style>
+                </defs>
+                <g transform="translate(0 0)">
+                    <path class="a" d="M.185,143.579,7.3,137.2a.6.6,0,0,1,.648-.091.529.529,0,0,1,.352.529v4.084H31.407a.581.581,0,0,1,.426.164A.564.564,0,0,1,32,142.3v3.5a.562.562,0,0,1-.167.419.582.582,0,0,1-.426.164H8.3v4.084a.549.549,0,0,1-.352.529.584.584,0,0,1-.648-.109L.185,144.435A.591.591,0,0,1,0,144,.572.572,0,0,1,.185,143.579Z" transform="translate(0 -137.052)"/>
+                </g>
+            </svg>
+            back
+    </button>
+</div>
+<div>        
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
