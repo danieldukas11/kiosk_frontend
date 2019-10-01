@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 import { fadeAnimation } from './animmations/navigation.animation';
+import { PlatformLocation } from '@angular/common'
+
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,8 @@ import { fadeAnimation } from './animmations/navigation.animation';
   ]
     
 })
-export class AppComponent {
+export class AppComponent {  
+
   public getRouterOutletState(outlet:RouterOutlet) {
    
     return outlet.isActivated ? outlet.activatedRoute : '';

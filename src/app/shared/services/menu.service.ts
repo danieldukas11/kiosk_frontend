@@ -11,27 +11,35 @@ import { BehaviorSubject } from 'rxjs';
 export class MenuService {
   public Menu=new BehaviorSubject([]);
   public specials=new BehaviorSubject([]);
-  public product=new ReplaySubject();
+  public product=new BehaviorSubject([]);
+  public forPay=new BehaviorSubject([]);
 
   constructor(
     private http:HttpClient
   ) { }
+
   getMenu(){  
     return this.http.get(`${environment.url}/menu`)  
   }
 
- setMenu(data){
-   this.Menu.next(data)
- }
- setSpecials(data){
-  this.specials.next(data)
-}
- 
- getSpecials(){
-   return this.http.get(`${environment.url}/specials`)
- }
+  setMenu(data){
+    this.Menu.next(JSON.parse(JSON.stringify(data)))
+  }
+
+  getSpecials(){
+    return this.http.get(`${environment.url}/specials`)
+  }
+
+  setSpecials(data){
+    this.specials.next(JSON.parse(JSON.stringify(data)))
+  }    
+
  addProduct(prod){
-  this.product.next(prod)
+  this.product.next(JSON.parse(JSON.stringify(prod)))
+}
+
+addForPay(data){
+  this.forPay.next(JSON.parse(JSON.stringify(data)))
 }
 
 }

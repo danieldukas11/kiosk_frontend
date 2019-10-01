@@ -1,33 +1,21 @@
-import { Component,OnInit, HostListener, ViewChild, ElementRef, AfterViewInit,OnDestroy } from '@angular/core';
-import {MenuService} from '../shared/services/menu.service';
-import {environment} from '../../environments/environment'
-import { Router } from '@angular/router';
+import { Component,OnInit,OnDestroy } from '@angular/core';
+import { RoutingService } from '../shared/services/routing.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, AfterViewInit,OnDestroy {
-  menu=[];
-  Subscriptions=[];
-  imgUrl=environment.staticUrl +'images/';
-  constructor(
-    private ms:MenuService,
-    private router:Router
+export class ProductsComponent implements OnInit, OnDestroy {
+  
+  constructor(  
+    public rs:RoutingService,
   ) { }
   ngOnInit() {
-    this.Subscriptions.push(
-      this.ms.Menu.subscribe((dat)=>{
-      this.menu=dat
-  })
-    )
-  
   }
-  ngOnDestroy(){
-    this.Subscriptions.forEach(s => s.unsubscribe())    
+  ngOnDestroy(){    
   }
-  getProduct(product){
+  /*getProduct(product){
     this.router.navigateByUrl('menu/ingredients',{state:product})    
   }
 
@@ -52,6 +40,6 @@ ngAfterViewInit(){
       left: 0, 
       behavior: 'smooth' 
     });
-  }
+  }*/
 
 }

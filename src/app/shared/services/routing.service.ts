@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,10 @@ import { ReplaySubject } from 'rxjs';
 export class RoutingService {
 
   constructor() { }
-  $route=new ReplaySubject()
+  $route=new BehaviorSubject("")
   
   setRoute(route){
     this.$route.next(route)
+    console.log(route)
   }
 }

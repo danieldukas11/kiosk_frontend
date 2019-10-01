@@ -9,17 +9,11 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   imgUrl=environment.staticUrl +'images/'
-  constructor(
-    private rs:RoutingService,
-    private router:Router
+  constructor(   
   ) { }
 
   ngOnInit() {
   }
-  goToRoute(){
-    this.rs.setRoute("menu")
-    this.router.navigate(["menu"])
-
-  }
+ 
 
 }

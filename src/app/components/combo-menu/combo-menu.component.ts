@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../shared/services/menu.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { RoutingService } from 'src/app/shared/services/routing.service';
 
 
 @Component({
@@ -14,22 +15,20 @@ export class ComboMenuComponent implements OnInit {
 
   constructor(
     public ms:MenuService,
-    private router:Router
+    private rs:RoutingService,
   ) { }
 
   ngOnInit() {
-    this.ms.specials.subscribe((data)=>{
-      console.log(data)
-    })
+    
   }
 
   getCombo(combo){
     let data={
-      type:"special",
+      type:"combo",
       product:combo
     }
-    console.log(combo)
-    this.router.navigateByUrl('menu/combo',{state:data})
+    this.rs.setRoute("combo")
+    this.ms.addProduct(data)
   }
 
 

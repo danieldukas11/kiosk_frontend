@@ -1,1 +1,40 @@
-
+<div class="product-wrapper">
+    <div class="header">{{product.title}}</div>
+    <div class="detail-menu">
+        <div class="left-button" *ngIf="type!=='combo'">
+            <div>Quick Order</div>
+            <div>No Changes</div>
+            <div style="font-size:24px">$ {{quickProd.price}}</div>
+        </div>
+        <div class="left-button-transparent" *ngIf="type==='combo'"></div>
+        <img [src]="imgUrl+product.image" alt="" class="product-image">
+        <div class="details" *ngIf="type==='combo'">
+            <div class="images" >
+                <span *ngFor='let menu of product.menus' >                    
+                    <img [src]="imgUrl+menu?.default.image" alt="" class='selected-image' > 
+                </span>                
+            </div>            
+            <div class="text">
+                <span *ngFor='let menu of product.menus'>{{menu.default[0].title}}<span *ngIf="menu.configurable">
+                        (<span *ngFor='let default of menu.default.defaults'>{{default.title+","}}
+                        </span>)</span>,
+                </span>
+            </div>
+        </div>
+        <div class="details" *ngIf="type!=='combo'">
+                <div class="images" >
+                    <span *ngFor='let selected of product.defaults' >                    
+                        <img [src]="imgUrl+selected?.image" alt="" class='selected-image' > 
+                    </span>                
+                </div>            
+                <div class="text">
+                    Our {{product.title}} starts with
+                    <span *ngFor='let selected of product.defaults'>{{selected.title}}<span *ngIf="selected.selected_qty">(x{{selected.selected_qty}})</span>, </span>
+                </div>
+            </div>
+        <div class="ordering">
+            <div class="order-button">Quick order <span>$ {{product.price}}</span></div>
+            <div class="cancel-button">Cancel</div>
+        </div>
+    </div>
+</div>

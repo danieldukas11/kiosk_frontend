@@ -1,0 +1,24 @@
+<div class="customize-wrapper">
+    <div class="header">
+        <div class="col1">Categories</div>
+        <div  class="col2">Select Your Ingredients</div>
+    </div>
+    <div class="product-list">
+        <div class="product" *ngFor='let menu of product?.menus;let ii = index'>
+            <div class="product-title">{{menu.title}}</div>
+            <div class="types" >
+                <div class="type" *ngFor="let prod of menu.products">
+                    <div class="prod" [ngClass]="getSelected(prod._id, menu.default[0]._id)">
+                        <img [src]="imgUrl+prod.image" alt="" class="prod-img">
+                        <div class="prod-content">
+                            <div class="title">{{prod?.title}}</div>
+                            <div class="price">$ {{prod?.price}}</div>
+                        </div>
+                    </div>
+                    <div class="customize" *ngIf="menu.configurable">Edit {{menu.title}} Ingredients</div>
+                </div>                
+            </div>      
+        </div>        
+    </div>
+    
+</div>
