@@ -1,0 +1,50 @@
+.login-wrapper{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index:1000000000;
+    background-color: rgba(0,0,0,0.9);
+    .auth-form{
+        position:absolute;
+        top:calc(50% - 150px);
+        left:calc(50% - 200px);
+        background-color:white;
+        height:300px;
+        width:400px;
+        padding:10px 10px;
+        input{
+            display:block;
+            width:calc(100% - 24px);
+            margin:10px auto;
+            padding:5px 15px;
+            font-size:16px;
+            outline:0
+        }
+        button{
+            display:block;
+            width:calc(100% - 24px);
+            margin:10px auto;
+            padding:5px 15px;
+            font-size:16px;
+            outline:0
+        }
+
+    }
+    .keyboard{
+    position:absolute;
+    background-color: white;
+    width:1200px;
+    left:calc(50% - 600px);
+    bottom:100px
+    
+}
+.auth-form.focused{
+    top:100px
+}
+input.focused{
+   border:1px solid #F2AC21; 
+   color:#F2AC21; 
+}
+}

@@ -1,7 +1,7 @@
 
 .wrapper{
+    font-weight:600;
     font-family: roboto;
-    font-weight: 400;
     font-style: normal;
     position:fixed;
     z-index: 5;
@@ -42,10 +42,11 @@
         border:1px solid #F2AC21;  
         margin:10px auto;
         width:340px;
-        padding:16px;
+        padding:10px;
         border-radius:8px;
         .product-detail{
-           max-height:400px;
+            padding:0 6px;
+            max-height:170px;
             border-bottom:1px solid #D8D8D8;
             overflow-y:auto;
             overflow-x:hidden;
@@ -60,13 +61,13 @@
                     &-detail{
                         display:flex;
                         justify-content: space-between;
-                        :nth-child(1){
+                        .detail-menu{
                             width:231px;
                            
                             font-weight:600 ; 
                             font-size:16px;  
                             color:#5E5B58;
-                            :nth-child(1){
+                            .content{
                                width:150px; 
                                overflow:hidden ;
                                width:231px; 
@@ -162,34 +163,38 @@
             display:flex;
             justify-content:space-between;
             
-            :nth-child(1){
-                color:#5E5B58;
-                font-family: roboto;
-                border:0;
-                text-align:center;
-                font-weight:600 ; 
-                padding:16.5px 0;
-                width:139px;
-                border-radius:100px;
-                background: #FFFFFF 0% 0% no-repeat padding-box;
-                box-shadow: 0px 3px 15px #00000012;  
-                font-size:16px;              
+            .cancel{
+                padding-top:0px;
+                font-size:16px;
+                width:64px;
+                height:64px;
+                background-color:#FFFE03;
+                border:2px solid #5E5B58;    
+                color:#5E5B58;            
+                border-radius:50%;
+                margin:16px auto 0;
+                text-align:center;             
                 &:focus{
                     outline:0;                    
                 }
 
             }
-            :nth-child(2){
-                background-color:#F2AC21;
-                font-family: roboto;
-                font-weight:600 ;               
-                color:white;
-                border:0;
+            .pay{
+                padding-top:0px;
+                font-size:20px;
+                width:100px;
+                height:100px;
+                background-color:#3CFF03;
+                border:2px solid #F2AC21;
+                color:#5E5B58; 
+                border-radius:50%;
+                margin:auto;
                 text-align:center;
-                padding:16.5px 0;
-                width:139px;
-                border-radius:100px;
-                font-size:16px;
+                span{
+                    display:block;
+                    font-size:20px;
+                    font-weight:500
+                }
                 &:focus{
                     outline:0;                    
                 }
@@ -197,6 +202,17 @@
         }
 
     }
-
-    .product-detail::-webkit-scrollbar { display:none !important }
+    
+    .product-detail::-webkit-scrollbar { width: 3px}
+    .product-detail::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .product-detail::-webkit-scrollbar-thumb {
+        background: #F2AC21;
+      }
+      
+      /* Handle on hover */
+      .product-detail::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
 }

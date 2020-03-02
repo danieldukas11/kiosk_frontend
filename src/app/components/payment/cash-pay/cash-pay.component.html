@@ -1,0 +1,25 @@
+<div class="cash-wrapper">
+    <div class="left-container">    
+        <div style="margin-bottom:6px">
+            <button class="back-button" (click)="goBack()"><i  class="far fa-long-arrow-alt-left"></i> &nbsp;&nbsp;&nbsp;Back</button>
+        </div>   
+        <div class="title">
+                Please Insert Cash below and push finished button. Your change will come with your order! Enjoy Your Food!
+        </div> 
+        <div style="color: #5E5B58;">
+            <button class="cancel-button" (click)="cancel()">Cancel</button>
+            <div class="total-amount">Total amount: $ {{total}}</div>
+            <span>Inserted amount </span> <input type="text" placeholder="$ 0.00" readonly class="insert-amount" [value]="'$ '+inserted">
+        </div>
+        
+    </div> 
+    <!--<div class="select-pay">
+        <div class="card">
+                <img src="../../../../assets/images/visa-pay-logo.svg" alt="" srcset="" style="margin-right:14px">
+                <img src="../../../../assets/images/mastercard.svg" alt="" srcset="">
+                <img src="../../../../assets/images/paypal-logo-in-rectangular-black-card.svg" alt="" srcset="" style="margin-right:14px">
+                <img src="../../../../assets/images/american-express-logo.svg" alt="" srcset="">
+        </div>
+        <button class="pay-button" (click)="setpaytype('card')">Pay Card</button>
+    </div>-->
+</div>

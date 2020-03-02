@@ -1,5 +1,6 @@
+<app-login *ngIf="!authorize()"></app-login>
 <div class="wrapper" [routerLink]="'menu'">
     <div class="header-text">Touch to Begin</div>
     <div class="hr"></div>
-    <img [src]="imgUrl+'1.png'" alt="" class="back-img">
+    <img [src]="imgUrl+'1.png'" alt="" class="back-img" >
 </div>

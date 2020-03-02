@@ -7,16 +7,19 @@
         <div class="ingredient" *ngFor='let ingredient of product?.ingredients;let ii = index'>
             <div class="ingredient-title">{{ingredient.title}}</div>
             <div class="types" >
-                <div class="type " *ngFor='let type of ingredient.types;let ti = index' >
+                <div class="type " *ngFor='let type of ingredient.ingridientTypes;let ti = index' >
                     <div class="type-container" *ngIf="type?._id!==openTypeId" [ngClass]="type && type.selected?'selected':''" >
-                        <img [src]="imgUrl+type.image" alt="" class="type-container-img">
+                        <img [src]="imgUrl+type.image" alt="" class="type-container-img" >
                         <div class="type-container-detail" (click)="openTypeSelecting(type._id)">
                             <div class="title" >
                                 <div *ngIf="!type.selected">Add</div>
-                                <div *ngIf="type.selected"><span *ngIf="type.selected_qty==0.5">Light</span><span *ngIf="type.selected_qty==2">Double</span></div>
-                                <div>{{type.title}}</div>
+                                
+                                <div>{{type.selected_qty | titlecase }} {{type.title}}</div>
                             </div>
-                            <div class="price">$ {{type.price}}</div>
+                            <div *ngIf="type.selected&&type.selected_qty== ''&&!checkDefault(type._id,ingredient)" class="price">$ {{type.price}}</div>
+                            <div *ngIf="type.selected &&type.selected_qty=='double'" class="price">$ {{type.double_price}}</div>
+                            <div *ngIf="type.selected &&type.selected_qty=='light'" class="price">$ {{type.light_price}}</div>
+                            <div *ngIf="checkDefault(type._id,ingredient)&&type.selected_qty== ''" class="price">$ 0</div>
                         </div>
                     </div>   
                     <div class="type-selecting" *ngIf="type?._id===openTypeId" >
@@ -29,24 +32,22 @@
                             </div>                            
                         </div>
                         <div class="control-buttons">
-                            <button (click)="addProduct('normal',type,ingredient)" [disabled]="type.selected &&!type.selected_qty">Yes 
+                            <button *ngIf='type.price!==null' (click)="addProduct('',type,ingredient,ti)" [disabled]="type.selected &&type.selected_qty==''">Yes 
                                 <span *ngIf="type.selected_qty">(${{type.normal_price}})</span>
                             </button>
-                            <button (click)="deleteItem(type._id,ii,ti)" [disabled]="!type.selected">Delete 
+                            <button (click)="deleteItem(type,ingredient,ti)" [disabled]="!type.selected">Delete 
                                 <span *ngIf="type.selected">(-${{type.price}})</span>
                             </button>
-                            <button (click)="addProduct('light',type,ingredient)" [disabled]="type.selected &&type.selected_qty==0.5">Light
+                            <button *ngIf='type.light_price||type.light_price>=0' (click)="addProduct('light',type,ingredient,ti)" [disabled]="type.selected &&type.selected_qty=='light'">Light
                                 <span *ngIf="type.selected_qty!='light'">(${{type.light_price}})</span>
                             </button>
-                            <button (click)="addProduct('double',type,ingredient)" [disabled]="type.selected &&type.selected_qty==2">Double
+                            <button *ngIf='type.double_price||type.double_price>=0' (click)="addProduct('double',type,ingredient,ti)" [disabled]="type.selected &&type.selected_qty=='double'">Double
                                 <span *ngIf="type.selected_qty!='double'">(${{type.double_price}})</span>
                             </button>
                         </div>
                     </div>                 
                 </div>
             </div>           
-        </div>
-        
-    </div>
-    
+        </div>       
+    </div>    
 </div>

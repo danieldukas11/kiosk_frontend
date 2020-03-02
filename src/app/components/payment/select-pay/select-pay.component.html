@@ -1,0 +1,47 @@
+<div class="pay-wrapper">
+    <div class="left-container">
+        <textarea class="spec-instructions" placeholder="Type here your special instructions" (click)="selectInp('spec-instructions')" readonly>{{spec_instructions}}</textarea>
+        <button class="cancel-button" (click)="cancel()">Cancel</button>
+        <button class="finish-button" (click)="finish()">Finish</button>
+    </div>       
+    <!--<div class="select-pay">
+        <div class="cash">
+            <sup>$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sup>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</sup>
+        </div>
+        <button class="pay-button" (click)="setpaytypeData('cash')">Pay Cash</button>
+    </div>-->
+    <div class="payment-data">
+        <div class="detail">
+            <div class="data">
+                <div>Sub-total</div>
+                <div>$ {{sub_total}}</div>
+            </div>
+            <div class="data">
+                <div>TAX</div>
+                <div>$ {{TAX}}</div>
+            </div>
+            <div class="data">
+                <div>Tip</div>
+                <div>$ {{tip}}</div>
+            </div>
+        </div>
+        <div class="total">
+            <div>TOTAL AMOUNT</div>
+            <div style="color:#F2AC21">$ {{total}}</div>
+        </div>
+    </div>
+     <!-- <div class="select-pay">
+      <div class="card">
+                <img src="../../../../usr_kiosk/assets/images/visa-pay-logo.svg" alt="" srcset="" style="margin-right:14px">
+                <img src="../../../../usr_kiosk/assets/images/mastercard.svg" alt="" srcset="">
+                <img src="../../../../usr_kiosk/assets/images/paypal-logo-in-rectangular-black-card.svg" alt="" srcset="" style="margin-right:14px">
+                <img src="../../../../usr_kiosk/assets/images/american-express-logo.svg" alt="" srcset="">
+        </div>
+        <button class="pay-button" (click)="setpaytypeData('card')">Pay Card</button>
+    </div>-->
+</div>
+<div class="keyboard" [style.display]="keyboard?'block':'none'">
+    <div class="simple-keyboard"></div>
+</div>

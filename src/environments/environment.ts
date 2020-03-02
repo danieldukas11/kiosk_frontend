@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  url:"http://localhost:3500/user_kiosk/",
-  staticUrl:"http://localhost:3500/"
+  // url:"http://64.225.3.114/user_kiosk/",
+  url: 'http://localhost/user_kiosk/',
+  staticUrl: 'http://64.225.3.114/'
 };
 
 /*

@@ -7,7 +7,7 @@
             <div style="font-size:24px">$ {{quickProd.price}}</div>
         </div>
         <div class="left-button-transparent" *ngIf="type==='combo'"></div>
-        <img [src]="imgUrl+product.image" alt="" class="product-image">
+        <img [src]="imgUrl+product.image" alt="" class="product-image" >
         <div class="details" *ngIf="type==='combo'">
             <div class="images" >
                 <span *ngFor='let menu of product.menus' >                    
@@ -15,9 +15,12 @@
                 </span>                
             </div>            
             <div class="text">
-                <span *ngFor='let menu of product.menus'>{{menu.default[0].title}}<span *ngIf="menu.configurable">
-                        (<span *ngFor='let default of menu.default.defaults'>{{default.title+","}}
-                        </span>)</span>,
+                <span *ngFor='let menu of product.menus'>
+                    <span *ngIf="menu.dafault&&menu.default.length">
+                        {{menu.default[0]?.title}}<span *ngIf="menu.configurable&&menu.default[0].defaults.length">
+                            (<span *ngFor='let default of menu.default[0].defaults'>{{default.title}}<span *ngIf="default.selected_qty">(X {{default.selected_qty}})</span>,
+                            </span>)</span><span *ngIf="menu.default[0].sizable">({{menu.default[0].size.title}})</span>,
+                    </span>
                 </span>
             </div>
         </div>
@@ -33,8 +36,9 @@
                 </div>
             </div>
         <div class="ordering">
-            <div class="order-button">Quick order <span>$ {{product.price}}</span></div>
-            <div class="cancel-button">Cancel</div>
+            <div class="order-button" *ngIf="type!=='prod-customize'">Quick order <span>$ {{product.price}}</span></div>
+            <div class="order-button" *ngIf="type=='prod-customize'" (click)="next()">next</div>
+            <div class="cancel-button" (click)="cancel()">Cancel</div>
         </div>
     </div>
 </div>

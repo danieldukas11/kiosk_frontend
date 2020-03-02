@@ -15,5 +15,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
  
+authorize(){
+  return localStorage.getItem("terminal_id")
+}
 
 }

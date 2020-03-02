@@ -1,0 +1,26 @@
+<div class="tip-wrapper">
+    <div class="left-container">
+        <textarea class="spec-instructions" placeholder="Type here your allergy information" (click)="selectInp('spec-instructions')"  readonly>{{spec_instructions}}</textarea>
+        <button class="cancel-button" (click)="cancel()">Cancel</button>
+    </div>
+    <div class="right-container">
+        <div class="header">We're Glad We're in your Journey</div>
+        <div class="tips" *ngIf="!custom">
+            <button class="tip-button" (click)="setData(price,30)">30% Tip | $ {{getTip(price,30)}}</button>
+            <button class="tip-button" (click)="setData(price,20)">20% Tip | $ {{getTip(price,20)}}</button>
+            <button class="tip-button" (click)="setData(price,10)">10% Tip | $ {{getTip(price,10)}}</button>
+        </div>
+        <div class="menu"  *ngIf="!custom">
+            <button class="menu-button" (click)="custom=true">Custom Tip</button>
+            <button class="menu-button" (click)="setData(price,0)">No Thanks</button>
+        </div>
+        <div class="custom-tip"  *ngIf="custom">
+            <input type="text" #tip class="tip-input" placeholder="Type Custom Tip" (click)="selectInp('custom-tip')" [value]="tipValue" readonly>
+            <button class="next-button" (click)="setData(price,tip.value)"><i class="fas fa-long-arrow-alt-right"></i></button>
+        </div>
+    </div>    
+</div>
+<div class="keyboard" [style.display]="keyboard?'block':'none'">
+    <div class="simple-keyboard"></div>
+</div>
+

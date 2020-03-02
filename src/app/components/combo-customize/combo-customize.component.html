@@ -4,21 +4,35 @@
         <div  class="col2">Select Your Ingredients</div>
     </div>
     <div class="product-list">
-        <div class="product" *ngFor='let menu of product?.menus;let ii = index'>
+        <div class="product" *ngFor='let menu of product?.menus;let mi = index'>
             <div class="product-title">{{menu.title}}</div>
-            <div class="types" >
+            <div class="types"  *ngIf="openTypeId!==mi">
                 <div class="type" *ngFor="let prod of menu.products">
-                    <div class="prod" [ngClass]="getSelected(prod._id, menu.default[0]._id)">
+                    <div class="prod" [ngClass]="getSelected(prod._id, menu.default[0]._id)" (click)="continue(mi,prod)">
                         <img [src]="imgUrl+prod.image" alt="" class="prod-img">
                         <div class="prod-content">
-                            <div class="title">{{prod?.title}}</div>
+                            <div class="title">{{prod?.title}}</div>   
                             <div class="price">$ {{prod?.price}}</div>
+                            <div class="sz" *ngIf="prod.sizable">{{prod?.size.title}}</div>
+                            
                         </div>
                     </div>
-                    <div class="customize" *ngIf="menu.configurable">Edit {{menu.title}} Ingredients</div>
+                    <div class="customize" *ngIf="menu.configurable" (click)="customize(menu.default[0])">Edit {{menu.title}} Ingredients</div>
+                </div>                
+            </div> 
+            
+            <div class="types" *ngIf="openTypeId===mi" >
+                <div class="type" *ngFor="let size of SizeProd?.sizes; let si=index">
+                    <div class="prod" [ngClass]="getSizeSelected(size)" (click)="getSize(size)">
+                        <img [src]="imgUrl+SizeProd.image" alt="" class="prod-img" >
+                        <div class="prod-content">
+                            <div class="title">{{size?.title}}</div>
+                            <div class="price">$ {{size?.price}}</div>
+                        </div>
+                    </div>
+                    <div class="customize" *ngIf="menu.configurable" (click)="customize(menu.default[0])">Edit {{menu.title}} Ingredients</div>
                 </div>                
             </div>      
         </div>        
-    </div>
-    
+    </div>    
 </div>

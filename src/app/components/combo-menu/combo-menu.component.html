@@ -3,7 +3,7 @@
     <div class="specials">
         <div class="special" *ngFor="let special of this.ms.specials|async" (click)="getCombo(special)">
             <div class="details">
-                <img [src]="imgUrl+special.image" alt="">
+                <img [src]="imgUrl+special.image" alt="" >                
                 <div class="title">{{special.title}}</div>
                 <div class="price">$ {{special.price}}</div>
             </div>            

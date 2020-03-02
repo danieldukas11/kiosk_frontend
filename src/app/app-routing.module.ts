@@ -3,22 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProductsComponent } from './products/products.component';
-//import { IngredientsComponent } from './ingredients/ingredients.component';
-
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path:"",
-    component: HomeComponent 
+    path: '',
+    component: HomeComponent
   },
   {
-    path:"menu",
-    component:MenuComponent,
-    children:[
+    path: 'menu',
+    component: MenuComponent,
+    canActivate: [AuthGuard],
+    children: [
       {
-        path:"**",
-        component:ProductsComponent
-      }    
+        path: '**',
+        component: ProductsComponent
+      }
     ]
   }
 ];
@@ -27,6 +27,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-  
+export class AppRoutingModule {
 }

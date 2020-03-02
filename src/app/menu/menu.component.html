@@ -1,52 +1,70 @@
 <div class="wrapper">
-    <div class="logo"><img [src]="imgUrl+'logo.png'" alt="" srcset=""></div>
+    <div class="logo"><img [src]="imgUrl+'logo.png'" alt="" srcset="" ></div>    
     <div class="pay-head">Payment details</div>
     <div class="payment-wrapper" *ngIf="orders.length">
-        <div class="product-detail">
-            
+        <div class="product-detail">            
             <ol style="padding:0 0 0 16px" >
                 <li class="ordered-product" *ngFor='let order of orders' >                           
-                    <div class="ordered-product-detail">                                                      
-                        <div>
-                            <div>
-                                <div>{{order.title}}</div>                                 
+                    <div class="ordered-product-detail" *ngIf="!order.isSpecial">                                                      
+                        <div class="detail-menu">
+                            <div class="content">
+                                <div><div style="display: inline-block">{{order.title}}</div><div style="display: inline-block" *ngIf="order.size">({{order.size}})</div></div>                          
                                 <div class="quant-control">                                    
-                                    <div class="minus"  >
+                                    <div class="minus" (click)="order.quantity=order.quantity>0?order.quantity-1:0" >
                                         <i class="fal  fa-minus"></i>
                                     </div>
                                     <div class="prod-quant">{{order.quantity}}</div>
-                                    <div class="plus" >
+                                    <div class="plus" (click)="order.quantity=order.quantity+1"  >
                                         <i class="fal fa-plus"></i>                                                                                
                                     </div>
                                 </div>
                             </div>
-                            <div><span *ngFor="let ingr of order.ingrs" style="display: inline; font-size:12px">{{ingr.title}}<span *ngIf='ingr.quantity' style="display: inline; font-size:12px">({{ingr.quantity}})</span>, </span></div>
+                            <div><span *ngFor="let ingr of order.defaults" style="display: inline; font-size:12px">{{ingr.title}}<span *ngIf='ingr.selected_qty' style="display: inline; font-size:12px">(X {{ingr.selected_qty}})</span>, </span></div>
                         </div>
-                        <div style='line-height:1.5'>$ </div>
-                    </div>                    
+                        <div style='line-height:1.5'>$ {{getPrice(order)}}</div>
+                    </div> 
+
+                    <div class="ordered-product-detail" *ngIf="order.isSpecial">                                                      
+                        <div class="detail-menu">
+                            <div class="content">
+                                <div><div style="display: inline-block">{{order.title}}</div><div style="display: inline-block" *ngIf="order.size">({{order.size}})</div></div>                          
+                                <div class="quant-control">                                    
+                                    <div class="minus" (click)="order.quantity=order.quantity>0?order.quantity-1:0" >
+                                        <i class="fal  fa-minus"></i>
+                                    </div>
+                                    <div class="prod-quant">{{order.quantity}}</div>
+                                    <div class="plus" (click)="order.quantity=order.quantity+1"  >
+                                        <i class="fal fa-plus"></i>                                                                                
+                                    </div>
+                                </div>
+                            </div>
+                            <div><span *ngFor="let menu of order.menus">{{menu.default[0].title}}<span *ngIf="menu.default[0].size">({{menu.default[0].size.title}})</span><span *ngIf="menu.default[0].customizable">(<span *ngFor="let def of menu.default[0].defaults">{{def.title}}<span *ngIf="def.selected_qty">(X{{def.selected_qty}})</span>, </span>)</span>, </span></div>
+                        </div>
+                        <div style='line-height:1.5'>$ {{getPrice(order)}}</div>
+                    </div>                  
                 </li>                
             </ol>
         </div>
         <div class="payment-detail">
             <div class="total">
                 <div>TOTAL</div>
-                <div>$ </div>
+                <div>$ {{getTotal()}}</div>
             </div>
             <div class="tax">
                 <div>TAX</div>
-                <div>$ </div>
+                <div>$ {{getTax()}}</div>
             </div>
         </div> 
-        <div class="final-pay-container">
+        <div class="final-pay-container" >
             <div>Pay This Amount</div>
-            <div>$ </div>
+            <div>$ {{getPay()}} </div>
         </div>
         <div class="button-container">
-            <button [routerLink]="['/']">Cancel Order</button>
-            <button>Pay $12.9</button>
+            <button [routerLink]="['/']" class="cancel">Cancel</button>
+            <button class="pay" (click)="pay()">Pay<span>$ {{getPay()}}</span></button>
         </div>
     </div>    
-    <button class="back-bttn">
+    <button class="back-bttn" (click)="goBack()">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="14" viewBox="0 0 32 14">
                 <defs>
                     <style>.a{fill:#5e5b58;}</style>

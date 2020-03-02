@@ -1,45 +1,64 @@
 import { Injectable } from '@angular/core';
 import { Menu } from '../models/menu.model';
 import { Product } from '../models/product.model';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { from, ReplaySubject } from 'rxjs';
-import {environment} from '../../../environments/environment'
+import {environment} from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
-  public Menu=new BehaviorSubject([]);
-  public specials=new BehaviorSubject([]);
-  public product=new BehaviorSubject([]);
-  public forPay=new BehaviorSubject([]);
+  public Menu = new BehaviorSubject([]);
+  public specials = new BehaviorSubject([]);
+  public product = new BehaviorSubject([]);
+  public forPay = new BehaviorSubject([]);
+  public comboPrord = new BehaviorSubject([]);
 
   constructor(
-    private http:HttpClient
+    private http: HttpClient
   ) { }
-
-  getMenu(){  
-    return this.http.get(`${environment.url}/menu`)  
+  login(user) {
+    return this.http.post(`${environment.url}login`, user);
   }
 
-  setMenu(data){
-    this.Menu.next(JSON.parse(JSON.stringify(data)))
+  getMenu() {
+    const id = localStorage.getItem('terminal_id');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        terminal_id: id
+      })
+    };
+    return this.http.get(`${environment.url}/menu`, httpOptions);
   }
 
-  getSpecials(){
-    return this.http.get(`${environment.url}/specials`)
+  setMenu(data) {
+    this.Menu.next(JSON.parse(JSON.stringify(data)));
   }
 
-  setSpecials(data){
-    this.specials.next(JSON.parse(JSON.stringify(data)))
-  }    
+  getSpecials() {
+    const id = localStorage.getItem('terminal_id');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        terminal_id: id
+      })
+    };
+    return this.http.get(`${environment.url}/specials`, httpOptions);
+  }
 
- addProduct(prod){
-  this.product.next(JSON.parse(JSON.stringify(prod)))
+  setSpecials(data) {
+    this.specials.next(JSON.parse(JSON.stringify(data)));
+  }
+
+ addProduct(prod) {
+  this.product.next(prod);
+}
+comboProdCustomize(data) {
+  this.comboPrord.next(data);
 }
 
-addForPay(data){
-  this.forPay.next(JSON.parse(JSON.stringify(data)))
+addForPay(data) {
+  this.forPay.next(JSON.parse(JSON.stringify(data)));
 }
 
 }

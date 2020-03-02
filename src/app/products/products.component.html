@@ -1,8 +1,11 @@
 
 <div #wrapper class="wrapper">
-    <app-combo-menu *ngIf='(rs.$route|async)=="menu"'></app-combo-menu>
-    <app-product-details *ngIf='!((rs.$route|async)=="menu")'></app-product-details>
+    <!--<app-combo-menu *ngIf='(rs.$route|async)=="menu"'></app-combo-menu>-->
+    <!--<app-product-details *ngIf='!((rs.$route|async)=="menu")'></app-product-details>-->
     <app-menu-detail *ngIf='((rs.$route|async)=="menu")'></app-menu-detail>
     <app-product-customize *ngIf='((rs.$route|async)=="customize")'></app-product-customize>
-    <app-combo-customize  *ngIf='((rs.$route|async)=="combo")'></app-combo-customize>
+    <app-product-customize *ngIf='((rs.$route|async)=="customize-combo-prod")'></app-product-customize>
+   <!-- <app-combo-customize  *ngIf='((rs.$route|async)=="combo")'></app-combo-customize>-->
+    
 </div>
+<app-payment  *ngIf='((rs.$payRoute|async)==true)' style="position:absolute;width:100%;height:100%;z-index: 1000000000;"></app-payment>

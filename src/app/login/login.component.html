@@ -1,0 +1,24 @@
+
+<div class="login-wrapper" appClickStopPropagation (click)="keyboard=null;selectedInput=''">
+<toaster-container></toaster-container>
+   <form action="" class="auth-form " [ngClass]='selectedInput!=""?"focused":""' >
+       <h2 style="text-align:center">PLEASE LOGIN FOR FIRST TIME RUN</h2>
+       <input type="text"  placeholder="Username/Email"
+        appClickStopPropagation readonly 
+        (click)="selectInp('username')" [ngClass]='selectedInput=="username"?"focused":""' 
+        name="username" [(ngModel)]="user.userName">
+       <input type="text" placeholder="Terminal Number" 
+       appClickStopPropagation readonly (click)="selectInp('terminal')"
+        [ngClass]='selectedInput=="terminal"?"focused":""'
+         name="terminal" [(ngModel)]="user.terminal">
+       <input type="password" placeholder="password"
+        appClickStopPropagation readonly (click)="selectInp('password')" 
+        [ngClass]='selectedInput=="password"?"focused":""' name="password"
+         [(ngModel)]="user.password">
+       <button (click)="login()">Log In</button>
+   </form>
+   <div class="keyboard" [style.display]="keyboard?'block':'none'" appClickStopPropagation>
+    <div class="simple-keyboard"></div>
+</div>
+</div>
+

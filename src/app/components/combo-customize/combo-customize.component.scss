@@ -90,8 +90,16 @@
                                 font-size:14px;
 
                             }
+                            .sz{
+                                width:120px;
+                                overflow:hidden;
+                                text-overflow:ellipsis;
+                                margin:auto;
+
+                                font-size:14px;
+                            }
                             .price{
-                                float:right;
+                                display:inline-block;
                                 overflow:hidden;
                                 text-overflow:ellipsis;
                                 font-size:14px;                               

@@ -8,14 +8,14 @@
             <div class="menu-title">{{m.title}}</div>
             <div class="products" *ngIf="mId!==m._id">
                 <div class="prod" *ngFor='let prod of m.products' (click)="continue(prod, m._id)">
-                    <img [src]="imgUrl+prod.image" alt="" class="product-image">
+                    <img [src]="prod.image?imgUrl+prod.image:imgUrl+'no-image.png'" alt="" class="product-image" >
                     <div class="prod-title">{{prod.title}}</div>
                     <div class="prod-price">$ {{prod.price}}</div>
                 </div>
             </div>
             <div class="products" *ngIf="mId===m._id">
                     <div class="prod" *ngFor='let size of selectedProd.sizes' (click)="order(size)">
-                        <img [src]="imgUrl+selectedProd.image" alt="" class="product-image">
+                        <img [src]="imgUrl+selectedProd.image" alt="" class="product-image" >
                         <span [class]="size.selected?'selected':''">
                             <div class="prod-title">{{size.title}}</div>
                             <div class="prod-price">$ {{size.price}}</div>
