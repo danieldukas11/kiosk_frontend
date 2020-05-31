@@ -1,9 +1,0 @@
-<div class="wrapper">
-    <app-tip [price]="price" *ngIf="route=='select-tip'" (onSetTipData)="setTipData($event)" [TAX]="getTax(tax,price)"></app-tip>
-    <app-select-pay *ngIf="route=='select-pay-method'"
-     [sub_total]="price" [tip]="tip" [TAX]="getTax(tax,price)" [total]="getTotal(tax,price,tip)" (onSetPayData)="setPayment($event)" (OnFinish)="finish()"></app-select-pay>
-    <!--<app-cash-pay *ngIf="route=='cash-pay'" (onSetPayMethod)="setPayment($event)" [total]="getTotal(tax,price,tip)" [inserted]="inserted_ammount" (onGoBack)="goBack()"></app-cash-pay>
-    <app-card-pay *ngIf="route=='card-pay'" (onSetPayMethod)="setPayment($event)" [total]="getTotal(tax,price,tip)" (onGoBack)="goBack()"></app-card-pay>
-    <app-cash-pay-finish  *ngIf="route=='cash-pay-finish'" [total]="getTotal(tax,price,tip)" [inserted]="inserted_ammount" (OnFinish)="finish()"></app-cash-pay-finish>-->
-    <app-payment-finish   *ngIf="route=='pay-finish'" (onClose)="close()" (onSubmit)="submit()"></app-payment-finish>
-</div>

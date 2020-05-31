@@ -1,218 +1,192 @@
-
-.wrapper{
-    font-weight:600;
-    font-family: roboto;
-    font-style: normal;
-    position:fixed;
-    z-index: 5;
-    right:0;
-    width:400px;
-    height:100%;
+.logo{
+    width: 355px;
+    height: 224px;
+    object-fit: fill;
+    overflow: hidden;
+    position: absolute;
+    z-index: 50;
+    top:0px;
+    right:0px;   
+}
+.inquire{
+    position: absolute;
+    z-index: 10; 
+    top:0px;
+    right:379px;
+    width: 265px;
+    height: 195px;
+    .inq-img{
+        position: absolute;
+        width: 105px;
+        height: 102px;
+        object-fit: cover;
+        left:50%;
+        transform: translate(-61%,61%);
+        z-index:10
+    }
+    .inq-btn{
+        width: 265px;
+        height: 64px;
+        object-fit: cover;
+        position: absolute;
+        left:0;
+        bottom: 0;
+    }
+}
+.ingr-buttons{
+    position: absolute;
+    height: 150px;
+    width:200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: white;
-    box-shadow: 0 0 15px rgba(0,0,0, 0.5);
-    .logo{
-       width: 340px;
-       height: 180px;
-       object-fit: contain;
-       margin:30px auto
-    }
-    .pay-head{
-        margin:0 30px;
-        color:#F2AC21;
-        font-size: 24px;
-        border-bottom:1px solid #5E5B58;
-        text-align: center;
-        padding:8px 0 16px 0;
-
-    }
-    
-    .back-bttn{
-        position:absolute;
-        bottom:30px;
+    z-index: 10;
+    top:10px;
+    right:300px;
+    .back-bttn{        
         font-size: 20px;
         padding:10.5px 0;
-        border:0;
-        left:30px;
+        border:0;        
         background-color: transparent;
         border-radius: 200px;
         width:90px
         
     }  
-    .payment-wrapper{  
-        border:1px solid #F2AC21;  
-        margin:10px auto;
-        width:340px;
-        padding:10px;
-        border-radius:8px;
-        .product-detail{
-            padding:0 6px;
-            max-height:170px;
-            border-bottom:1px solid #D8D8D8;
-            overflow-y:auto;
-            overflow-x:hidden;
-         
-            .ordered-product{
-                font-family: roboto;
-                    font-weight:600 ; 
-                    font-size:16px;  
-                    color:#5E5B58;
-                    margin-bottom:8px;            
-                    
-                    &-detail{
-                        display:flex;
-                        justify-content: space-between;
-                        .detail-menu{
-                            width:231px;
-                           
-                            font-weight:600 ; 
-                            font-size:16px;  
-                            color:#5E5B58;
-                            .content{
-                               width:150px; 
-                               overflow:hidden ;
-                               width:231px; 
-                               overflow:hidden;
-                               display: flex;
-                               justify-content: space-between;
-                              
-                               .quant-control{
-                                   display:flex;
-                                   width:72px;
-                                   height:24px;
-                                   .minus{    
-                                    font-size: 16px;                                   
-                                    overflow:hidden; 
-                                    width:24px;
-                                    text-align:center;
-                                    i{
-                                        display:inline;
-                                        font-weight:400;
-                                        line-height:1.3;
-                                        
-                                    }
-                                 }
-                                 .prod-quant{  
-                                     text-align:center;
-                                     font-size:16px;
-                                     color:#F2AC21; 
-                                     overflow:hidden;                               
-                                     width:24px;
-                                     line-height:1.4;
-                                 }
-                                 .plus{ 
-                                     overflow:hidden;   
-                                     width:24px;
-                                     text-align:center;
-                                     i{
-                                        display:inline;
-                                        font-weight:400;
-                                        line-height:1.3;
-                                    }
-                                 }
-                               }
-                            }
-                            :nth-child(2){
-                                font-size:12px;  
-                            }
-                        }
-                        :nth-child(2){
-                            font-weight:600 ; 
-                            font-family: roboto;
-                            font-size:16px;  
-                            color:#5E5B58;
-            
-                        }
-                    }
-            }
-        }
-        .payment-detail{
-            border-bottom:1px solid #D8D8D8;
-            .total, .tax{
-                display:flex;
-                justify-content:space-between;
-                margin:8px 0;
-                div{
-                    font-family: roboto;
-                    font-weight:600 ; 
-                    font-size:16px;  
-                    color:#5E5B58;
-                    margin-bottom:8px;           
-                }
-            }
-        }
-        .final-pay-container{
-            display:flex;
-            justify-content:space-between;
-            margin:16px 0 60px 0;
-
-            :nth-child(1){
-                font-family: roboto;
-                font-weight:600 ; 
-                font-size:16px;  
-                color:#5E5B58                
-            }
-            :nth-child(2){
-                font-weight:600 ; 
-                font-family: roboto;
-                font-size:16px;  
-                color:#F2AC21;
-
-            }
-        }
-        .button-container{
-            display:flex;
-            justify-content:space-between;
-            
-            .cancel{
-                padding-top:0px;
-                font-size:16px;
-                width:64px;
-                height:64px;
-                background-color:#FFFE03;
-                border:2px solid #5E5B58;    
-                color:#5E5B58;            
-                border-radius:50%;
-                margin:16px auto 0;
-                text-align:center;             
-                &:focus{
-                    outline:0;                    
-                }
-
-            }
-            .pay{
-                padding-top:0px;
-                font-size:20px;
-                width:100px;
-                height:100px;
-                background-color:#3CFF03;
-                border:2px solid #F2AC21;
-                color:#5E5B58; 
-                border-radius:50%;
-                margin:auto;
-                text-align:center;
-                span{
-                    display:block;
-                    font-size:20px;
-                    font-weight:500
-                }
-                &:focus{
-                    outline:0;                    
-                }
-            }
+    .cancel{
+        font-size:14px;
+        width:70px;
+        height:70px;
+        background-color:#FFFE03;
+        border:2px solid #5E5B58;    
+        color:#5E5B58;            
+        border-radius:50%;
+        margin:auto;
+        text-align:center;             
+        &:focus{
+            outline:0;                    
         }
 
     }
-    
-    .product-detail::-webkit-scrollbar { width: 3px}
-    .product-detail::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      .product-detail::-webkit-scrollbar-thumb {
-        background: #F2AC21;
-      }
-      
-      /* Handle on hover */
-      .product-detail::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
+}
+
+
+.order_detail_wrapper{
+    z-index: 10;
+    position: absolute;
+    right: 2px;
+    top:224px;
+    background-color: white;
+    width: 580px;
+    height: 496px;
+    box-shadow: 2px 2px 3px #000000;
+    border: 1px solid #F2AC21;
+    padding:5px;
+
+    .custom_orders{
+        display: inline-block;
+        height: 100%;
+        border: 1px solid #F2AC21;
+        width:318px;
+        margin-right: 5px;
+        padding: 4px 11px;
+       .order{
+        .selected_order{
+            display: flex;
+            justify-content: space-between;
+        }
+       }
+    }
+    .other_orders{
+        vertical-align: top;
+        width: 245px;
+        height: 100%;
+        display: inline-block;       
+        
+        .orders{
+            width:100%;
+            border: 1px solid #F2AC21;
+            height: 357px;
+            margin-bottom: 5px;
+            padding:20px 5px;
+            .order div{
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        .payment{
+            border: 1px solid #F2AC21;
+            height: 122px;
+            padding: 10px;
+            div{
+                font-size: 18px;
+                font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+.actions{
+    position: absolute;
+    right:0;
+    z-index: 10;
+    top:725px;
+    .order_button{
+        display: inline-block;
+        position: relative;
+        width: 140px;
+        height: 122px;
+        margin-right: 43px;
+        img{
+            position: absolute;
+            z-index:10;
+            width: 101px;
+            height: 98px;
+            left: 17px;
+        }
+        button{
+            position: absolute;
+            left:0;
+            width: 100%; 
+            bottom:0;
+            height: 47px;
+            box-shadow: 3px 3px 3px #0000008D;
+            border: 4px solid #96C440;
+            border-radius: 21px;
+            background-color: white;
+            text-shadow: 1px 1px 0px #000000;
+            font-size: 18px;
+            outline: 0;
+        }
+    }
+    .cancel_button{
+        display: inline-block;
+        position: relative;
+        bottom: 15px;
+        width: 92px;
+        height: 94px;
+        margin-right: 30px;
+        img{
+            position: absolute;
+            z-index:10;
+            width: 66px;
+            height: 65px;
+            top:0px;
+            left:9px
+        }
+        button{
+            position: absolute;
+            left:0;
+            width: 100%; 
+            bottom:0;                    
+            height: 47px;
+            box-shadow: 3px 3px 3px #0000008D;
+            border: 4px solid #F2AC21;
+            border-radius: 21px;
+            text-shadow: 1px 1px 0px #000000;
+            font-size: 18px;
+            outline: 0;
+        }
+    }
 }

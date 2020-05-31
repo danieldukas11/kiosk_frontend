@@ -1,0 +1,11 @@
+<div class="destruct-wrapper" *ngIf="destructing" >
+    <div class="container" (click)="resetTimer()">
+        <div class="detail">
+            If you do not touch this screen in the next 5 seconds this order will self destruct and you will have to start over!
+        </div>
+        <div class="touch">
+            Touch Now
+        </div>
+        <div class="timer">{{leftsecconds}}</div>
+    </div>
+</div>

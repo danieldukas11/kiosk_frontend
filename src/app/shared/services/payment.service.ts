@@ -5,10 +5,10 @@ import {  BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class PaymentService {
-  $paymentData=new BehaviorSubject([])
+  $paymentData = new BehaviorSubject([]);
 
   constructor() { }
-  setPaymentData(data){
-    this.$paymentData.next(JSON.parse(JSON.stringify(data)) )
+  setPaymentData(data) {
+    this.$paymentData.next(JSON.parse(JSON.stringify(data)) );
   }
 }

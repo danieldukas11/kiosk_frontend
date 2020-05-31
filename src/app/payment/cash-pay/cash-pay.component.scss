@@ -1,0 +1,37 @@
+.cash_wrapper{
+    position: absolute;
+    top:50%;
+    left:25px;
+    transform: translate(0,-50%);
+    width: 1326px;
+    height: 526px;
+    .arrow{
+        position: absolute;
+        top:0;
+        transform: translate(0,25%);
+        display: inline-block;
+        width: 524px;
+        height: 365px;
+    }
+    .cash_pay_wrapper{  
+        right: 0;
+        display: inline-block;
+        position: absolute;
+        top:0;
+        width: 777px;
+        height: 526px;
+        background: #000000 0% 0% no-repeat padding-box;
+        box-shadow: 3px 2px 6px #000000;
+        font-size: 48px;
+        font-weight:bold;
+        color: white;
+        text-align: center;
+        padding:94px 35px;
+       
+        div{
+            margin-bottom:30px
+        }
+    }
+    
+    
+}

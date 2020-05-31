@@ -7,14 +7,13 @@ import {  BehaviorSubject } from 'rxjs';
 export class RoutingService {
 
   constructor() { }
-  $route=new BehaviorSubject("")
-  $payRoute=new BehaviorSubject(false)
-  
-  setRoute(route){
-    this.$route.next(route)
+  $route = new BehaviorSubject('');
+  $payRoute = new BehaviorSubject(false);
+  setRoute(route) {
+    this.$route.next(route);
   }
 
-  setPayRoute(val){
-    this.$payRoute.next(val)
+  setPayRoute(val) {
+    this.$payRoute.next(val);
   }
 }

@@ -1,26 +1,27 @@
-.wrapper{
-    .hr{
-        width:calc(100% - 120px);
-        height:0;
-        border-bottom:2px solid #F2AC21;
-        margin:0 auto 60px auto
-    }
+.wrapper{   
     .header-text{
+        position: relative;
+        z-index: 12;
         font-family: roboto;
         font-weight: bold;
-        font-size:80px;
+        font-size:60px;
         outline: 0;
         text-align:center;
-        color:#5E5B58;
-        margin:60px 0 60px 0
+        color:#E81E1E;
+        margin:15px 0 
     }
     .back-img{
+        object-fit: fill;
         position:fixed;
         display: block;
-        height:calc(100% - 318px);
-        width:calc(100% - 120px);
-        left:60px;
-        margin:auto
+        height:100%;
+        width:100%;
+        top:0;
+        left:0
+        
     }
-    background-color: white
+    background-color: white;
+    &:focus{
+        outline: 0;
+    }
 }

@@ -1,0 +1,487 @@
+/*.tip-wrapper{
+    width: 777px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    height: 526px;
+    background: #000000 0% 0% no-repeat padding-box;
+    box-shadow: 3px 2px 6px #000000;
+    display: flex;
+    color:white;
+    justify-content: space-between;
+    padding-top:14px;
+    .first{
+        width:178px;
+        text-align: center;
+        margin:24px 0 0 22px;
+        .content{
+            font: Bold 20px/23px Arial;           
+        }
+        .button{
+            width: 102px;
+            height: 110px;
+            position: relative;
+            margin:5px auto;
+            .btn-img{
+                position: absolute; 
+                z-index: 10;
+                left:0;
+                top:0;
+                width: 87px;
+                height: 84px;
+
+            }
+            button{
+                position: absolute;
+                bottom:0;
+                border-radius: 20px;
+                left:0;
+                width: 100%;
+                height: 61px;
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                box-shadow: 3px 3px 3px #0000008D;
+                border: 4px solid #96C440;
+                padding-top: 30px;
+                font: Bold 18px/21px Arial;
+                outline: 0;
+            }
+            .orange{
+                border: 4px solid #F25A21;
+            }
+        }
+        
+    }
+    .second{
+        width: 200px;
+        height: 260px;
+        .tip-input{
+            width:100%;
+            height: 46px;
+            background-color: white;
+            box-shadow: 3px 3px 3px #0000008D;
+            border: 4px solid #96C440;
+            text-align: center;
+            border-radius: 17px;
+            font: Bold 19px/22px Arial;
+            margin-bottom: 18px;
+            outline:0 
+        }
+
+        .keyboard{
+            width: 100%;
+            height: 260px;
+            background: #575757 0% 0% no-repeat padding-box;
+            box-shadow: 3px 3px 3px #000000D9;
+            padding:8px;
+            .key{
+                background: #000000 0% 0% no-repeat padding-box;
+                box-shadow: 3px 3px 5px #000000;
+                border: 1px solid #707070;
+                width: calc(100% / 3 - 7px);
+                height: 52px;
+                border-radius: 12px;
+                margin:0 7px 10px 0;
+                font: Bold 33px/26px Arial;
+                color: #FFFFFF;
+                vertical-align: top;
+                outline:0
+                
+            }
+            .key-bkspc{
+            width: calc(2 * 100% / 3 - 7px);;
+            }
+        }
+        .delay_btn{
+            background-color: #F25A21;
+            box-shadow: 3px 3px 3px #0000008D;
+            border: 1px solid #000000;
+            font: Bold 16px/19px Arial;
+            color:white;
+            border-radius: 23px;
+            width: 119px;
+            height: 64px;
+            display: block;
+            margin: 31px auto 18px;
+        }
+        .timer{
+            width: 148px;
+            height: 58px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 3px 3px 6px #000000A2;
+            border: 1px dashed #525252;
+            margin: auto;
+            padding: 6px 8px;
+            .time_data{
+                font-size: 37px;               
+                color:black
+            }
+        }
+    }
+    .third{
+        width:293px;
+        height: 46px;
+        margin-right:59px;
+        
+        .tip-button{
+            width:200px;
+            display: block;
+            height: 46px;
+            background-color: white;
+            box-shadow: 3px 3px 3px #0000008D;
+            border: 4px solid #F2AC21;
+            border-radius: 17px;
+            font: Bold 19px/22px Arial;
+            margin: 0 auto 18px;
+            outline:0
+        }
+        .price-button{
+            width:200px;
+            display: block;
+            margin: auto;
+            font: Bold 26px/31px Arial;
+            height: 54px;
+            box-shadow: 3px 3px 3px #0000008D;
+            border: 2px solid #F2AC21;
+            border-radius: 6px;
+            outline:0
+        }
+        .payment_buttons{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 17px;
+            img{
+                position: absolute;
+                width: 94px;
+                height: 92px;
+                z-index: 10;
+                top:0;
+                left:22px
+            }
+            button{
+                position: absolute;
+                top:69px;
+                left: 0;
+                box-shadow: 3px 3px 3px #0000008D;
+                
+                border-radius: 21px;
+                width: 131px;
+                outline:0;
+                height: 44px;
+                font-size: 16px;
+                text-shadow: 1px 1px 0px #000000;
+            }
+            .cash_pay{
+                position: relative;
+                display: inline-block;
+                width: 131px;
+                height:115px;
+                button{
+                    border: 4px solid #549ECD;
+                }
+            }
+            .card_pay{
+                display: inline-block;
+                position: relative;
+                width: 131px;
+                height:115px;
+                button{
+                    border: 4px solid #96C440;
+                }
+            }
+        }
+    }
+}*/
+
+.tip-wrapper{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    right:0;
+    top:224px;
+    .first-row{
+        .tip-container{
+            display: inline-flex;
+            justify-content: space-between;
+            width: 477px;
+            height: 360px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 2px 2px 3px #000000AC;
+            border: 1px solid #F2AC21;
+            padding:0 50px;
+            .first-col{
+                width: 150px;
+                padding: 52px 0;
+                .tip-input{
+                    width:100%;
+                    height: 46px;
+                    background-color: white;
+                    box-shadow: 3px 3px 3px #0000008D;
+                    border: 4px solid #96C440;
+                    text-align: center;
+                    border-radius: 17px;
+                    font: Bold 19px/22px Arial;
+                    margin-bottom: 18px;
+                    outline:0 
+                }
+        
+                .keyboard{
+                    width: 100%;
+                    height: 203px;
+                    background: #575757 0% 0% no-repeat padding-box;
+                    box-shadow: 3px 3px 3px #000000D9;
+                    padding:8px 0;
+                    .key{
+                        background: #000000 0% 0% no-repeat padding-box;
+                        box-shadow: 3px 3px 5px #000000;
+                        border: 1px solid #707070;
+                        width: calc(100% / 3 - 7px);
+                        height: 42.98px;
+                        border-radius: 12px;
+                        margin:0 7px 7px 0;
+                        font-weight:  Bold ;
+                        font-size:26px;
+                        color: #FFFFFF;
+                        vertical-align: top;
+                        outline:0
+                        
+                    }
+                    .key-bkspc{
+                    width: calc(2 * 100% / 3 - 7px);;
+                    }
+                }                
+            }
+            .second-col{
+                width: 170px;
+                padding: 14px 0;
+                .header{
+                    text-align: center;
+                    margin-bottom: 17px;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                .tip-button{
+                    width:170px;
+                    display: block;
+                    height: 33px;
+                    background-color: white;
+                    box-shadow: 3px 3px 3px #0000008D;
+                    border: 3px solid #F2AC21;
+                    border-radius: 13px;
+                    font-weight: bold;
+                    font-size: 16px;
+                    margin: 0 auto 15px;
+                    outline:0
+                }
+                .price-button{
+                    width:125px;
+                    display: block;
+                    margin: auto;
+                    font-weight: Bold;
+                    font-size: 16px;
+                    height: 33px;
+                    background-color: white;
+                    box-shadow: 3px 3px 3px #0000008D;
+                    border: 2px solid #F2AC21;
+                    outline:0
+                }
+                
+            }
+        }
+        .delay{        
+            font-size: 14px;
+            width: 92px;
+            height: 53px;
+            background: #F25A21 0% 0% no-repeat padding-box;        
+            box-shadow: 3px 3px 3px #0000008D;
+            border:0 ;
+            vertical-align: top;
+            position: relative;
+            top:280px;
+            margin-right: 24px;
+            border-radius:20px;
+            outline: 0;
+            color: white;
+        }
+        .infobuttons{
+            margin-top:30px;
+            display: inline-block;
+            vertical-align: top;
+            margin-right:12px;
+            width: 160px;
+            .content{
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;            
+            }
+            .button{
+                width: 92px;
+                height: 83px;
+                position: relative;
+                margin:0 auto 47px;
+                .btn-img{
+                    position: absolute; 
+                    z-index: 10;
+                    left:10px;
+                    top:0;
+                    width: 66px;
+                    height: 65px;
+                }
+                button{
+                    position: absolute;
+                    bottom:0;
+                    border-radius: 20px;
+                    left:0;
+                    width: 92px;
+                    height: 38px;
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
+                    box-shadow: 3px 3px 3px #0000008D;
+                    border: 4px solid #96C440;
+                    text-shadow: 1px 1px 0px #000000;
+                }
+                .orange{
+                    border: 4px solid #F25A21;                    
+                }
+            }
+            .button.second{
+                margin:0 auto
+            }
+        }
+    }
+    .second-row{
+        float: right;
+        margin-top: 10px;
+        clear: both;
+ 
+        .payment-buttons{
+            vertical-align: top;
+            display: inline-flex;
+            justify-content: space-between;
+            img{
+                position: absolute;
+                width: 66px;
+                height: 65px;
+                z-index: 10;
+                top:0;
+                left:10px
+            }
+            button{
+                position: absolute;
+                bottom:0;
+                left: 0;
+                box-shadow: 3px 3px 3px #0000008D;                
+                border-radius: 21px;               
+                outline:0;
+                width: 92px;
+                height: 38px;
+                
+                font-size: 16px;
+                text-shadow: 1px 1px 0px #000000;
+            }
+            .cash_pay{
+                margin-right:20px;
+                position: relative;
+                display: inline-block;
+                width:92px;
+                height:90px;
+                button{
+                    border: 4px solid #549ECD;
+                }
+            }
+            .card_pay{
+                margin-right:20px;
+                display: inline-block;
+                position: relative;
+                width: 92px;
+                height:90px;
+                button{
+                    border: 4px solid #96C440;
+                }
+            }
+        }
+        .payment-detail{
+            width: 247px;
+            height: 117px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 3px #00000088;
+            border: 1px solid #F2AC21;
+            display: inline-block;
+            padding:10px ;
+            .pay-row{
+                display: flex;
+                font-weight: bold;
+                font-size: 18px;
+                justify-content: space-between;
+                
+            }
+        }
+
+    }
+    .third-row{
+        float: right;
+        clear: both;
+        margin-top: 45px;
+        .action-buttons{
+            .back-button{
+                position: relative;
+                width: 134px;
+                height:95px;               
+                display: inline-block;
+                margin-right: 40px;
+                .btn-img{
+                    position: absolute;
+                    width: 73px;
+                    height: 71px;
+                    top:0;
+                    left:10px;
+                    z-index: 10;
+
+                }
+                button{
+                    position: absolute;
+                    box-shadow: 3px 3px 3px #000000;
+                    border: 6px solid #96C440;
+                    border-radius: 21px;
+                    font-size: 16px;
+                    background-color: white;
+                    text-shadow: 1px 1px 1px #000000;
+                    width: 134px;
+                    height: 43px;
+                    bottom:0
+
+                }
+            }
+            .cancel-button{
+                position: relative;
+                width: 92px;
+                height:85px;   
+                margin-right: 64px; 
+                display: inline-block;
+                .btn-img{
+                    position: absolute;
+                    width: 66px;
+                    height: 65px;
+                    z-index: 10;
+                    left:10px;
+                    top:0
+
+                }
+                button{
+                    position: absolute;
+                    box-shadow: 3px 3px 3px #0000008D;
+                    border: 4px solid #F2AC21;
+                    border-radius: 21px;
+                    font-size: 16px;
+                    background-color: white;
+                    text-shadow: 1px 1px 1px #000000;
+                    width: 92px;
+                    height: 38px;
+                    bottom:0
+
+                }
+            }
+
+        }
+    }
+    
+   
+}

@@ -1,0 +1,185 @@
+<div class="wrapper" #wrapper>
+    <div class="selected_prod">
+        <div *ngIf ="product.sizes[0].qty >0" >
+            <div>
+                <div class="prod_detail">
+                    <div style="width:34px; text-align: center;">
+                        {{product.sizes[0].qty}}
+                    </div>
+                    <div style="width:14px">{{product.sizes[0].title.split('')[0]}}</div>
+                    <div style="width:200px; ">
+                        {{product.speciality?product.speciality:product.title}}
+                    </div>
+                    <div  style="width:77px">
+                        <b>${{product.sizes[0].price}}</b>
+                    </div>                    
+                </div>
+                <div class="ingr-details">
+                    <span *ngFor='let si of product.selectedIngrs'>{{getqty(si.selected_qty)}} {{si.title}},</span>
+                </div>
+            </div>
+        </div>
+        <div  *ngIf ="product.sizes[1].qty >0">
+            <div>
+                <div class="prod_detail">
+                    <div style="width:34px; text-align: center;">
+                        {{product.sizes[1].qty}}
+                    </div>
+                    <div style="width:14px">{{product.sizes[1].title.split('')[0]}}</div>
+                    <div style="width:200px; text-align: left;">
+                        {{product.speciality?product.speciality:product.title}}
+                    </div>
+                    <div  style="width:77px">
+                        <b>${{product.sizes[1].price}}</b>
+                    </div>
+                    
+                </div>
+                <div class="ingr-details">
+                    <span *ngFor='let si of product.selectedIngrs'>{{getqty(si.selected_qty)}} {{si.title}},</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order_btns">
+        <div class="order" (click)="makeOrder(product)">
+            <img class="gun-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button>Add to Order</button>
+        </div>
+        <div class="order back" routerLink="/menu/products">
+            <img class="gun-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button><i class="far fa-arrow-left" style="font-size: 21px; vertical-align:-2px;"> </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Back</button>
+        </div>
+        <div class="order cancel" routerLink="/" >
+            <img class="inq-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button>Cancel</button>
+        </div>
+    </div>
+    <div class="ingr_category">
+        <div class="categories">
+            <div class="category_title">
+                <div>You Get This …</div>             
+            </div>  
+            <div class="product_detail">
+                <div class="product_default">
+                    <img [src]="product.image?imgUrl+product.image:imgUrl+'no-image.png'" alt="" class="product_image" >
+                    <div class="detail">1 Lg <div style="display: inline-block; width:110px;overflow: hidden; text-overflow:ellipsis; vertical-align: top;">{{product.title}}</div> <span *ngFor="let s of product.defSpeces">{{s.title}}, </span> $11.95</div>
+                </div>
+                <div class="product_selected">
+                    <div *ngFor="let si of product.selectedIngrs" class="selected_ingredient">
+                        <img  [src]="si.image?imgUrl+si.image:imgUrl+'no-image.png'" alt="" class="si_image">
+                        <div class="si_title">{{si.title}}</div>
+                    </div>
+                    <div style="width: 720px; display: inline-block;"></div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="categories" >
+            <div class="category_title">
+                <div>Or Change Quantity and Size</div>                
+            </div>  
+            <div class="ingredients" >
+                <div style="width:30px; display: inline-block"></div> 
+                    <div class="prodQTY" >
+                        <div class="large">
+                            <div class="decr" (click)="decreaseQty(product, 0)">                                
+                                <div class="minus-sign"></div>
+                            </div>
+                            <div class="data">                               
+                                <div style="text-align: center;">{{product.sizes[0].qty}} {{product.sizes[0].title}}</div>
+                                <div style="text-align: center;">+${{product.sizes[0].price}}</div>
+                               
+                            </div>
+                            <div class="incr" (click)="increaseQty(product, 0)">                                
+                                <div class="plus-sign">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prod_title">
+                            <div>{{product.title}}</div>
+                        </div>   
+                        <div class="small">
+                            <div class="decr" (click)="decreaseQty(product, 1)">                                
+                                <div class="minus-sign"></div>
+                            </div>
+                            <div class="data">                               
+                                <div style="text-align: center;">{{product.sizes[1].qty}} {{product.sizes[1].title}}</div>
+                                <div style="text-align: center;">+${{product.sizes[1].price}}</div>
+                            </div>
+                            <div class="incr" (click)="increaseQty(product, 1)">                                
+                                <div class="plus-sign">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <div style="width: 720px; display: inline-block;"></div>
+            </div>               
+            
+        </div>
+        <div class="categories" *ngFor="let i of product.ingredients">
+            <div class="category_title">
+                <div>{{i.title}}</div>
+                <div class="category_arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="105.518" height="54" viewBox="0 0 105.518 54">
+                        <defs>
+                          <filter id="Union_32" x="0" y="0" width="105.518" height="54" filterUnits="userSpaceOnUse">
+                            <feOffset dx="3" dy="3" input="SourceAlpha"/>
+                            <feGaussianBlur stdDeviation="2" result="blur"/>
+                            <feFlood/>
+                            <feComposite operator="in" in2="blur"/>
+                            <feComposite in="SourceGraphic"/>
+                          </filter>
+                        </defs>
+                        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Union_32)">
+                          <path id="Union_32-2" data-name="Union 32" d="M93.518,20.758,57.382,0V8.161H0V33.8H57.382V42Z" transform="translate(3 3)" fill="#fff"/>
+                        </g>
+                      </svg>
+                </div>
+            </div>  
+            
+            <div class="ingredients" >
+                <div style="width:30px; display: inline-block"></div> 
+                <ng-container *ngFor='let ingr of i.ingrs'>
+                    <div class="ingredient" (click)='popupId=ingr._id' *ngIf='popupId!=ingr._id'>
+                        <div [class]="ingr.selected?'ingr_img':'small_ingr_img'">
+                            <img [src]="ingr.image?imgUrl+ingr.image:imgUrl+'no-image.png'"  alt="">
+                        </div>
+                        
+                        
+                        <div class="detail" *ngIf="ingr.selected">
+                            <div>{{ingr.selected_qty}}</div>
+                            <div>${{getIngrPrice(ingr)}}</div>
+                        </div>
+                        <div class="add" *ngIf="!ingr.selected">Add</div>
+                        <div [class]="!ingr.selected?'title not_selected':'title'" >{{ingr.title}}</div>
+                    </div>
+                    <div class="select_popup" *ngIf='popupId==ingr._id'>
+                        <div class="popup_header">{{ingr.title}}</div>
+                        <div class="select" (click)="addIngredient(ingr,'Light')">
+                            <div >Light</div>
+                            <div>+{{ingr.light_price}}$</div>
+                        </div>
+                        <div class="select" (click)="addIngredient(ingr,'Included')">
+                            <div >Included</div>
+                            <div>+{{ingr.price}}$</div>
+                        </div>
+                        <div class="select" (click)="addIngredient(ingr,'Double')">
+                            <div>Double</div>
+                            <div>+{{ingr.double_price}}$</div>
+                        </div>
+                        <div class="delete" (click)="removeIngredient(ingr)">Delete</div>
+                    </div>
+                </ng-container>  
+                <div style="width: 720px; display: inline-block;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,49 @@
+<div class="actions">
+    <div class="infobuttons">
+        <div class="content" >
+            Do You have any Special Requests?
+        </div>
+        <div class="button" (click)="changeRoute('spec-instruction')">
+            <img src="" alt="">
+            <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button>Yes</button>
+        </div>
+        <div class="content">
+            Do You have any Food Allergy’s?
+        </div>
+        <div class="button second " (click)="changeRoute('alergy-info')">
+            <img src="" alt="">
+            <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button class="orange">Yes</button>
+        </div>
+    </div>
+    <button class="delay">
+        Delay Order Pic up at
+    </button>
+    <div class="delay_input">7:25</div>
+</div>
+<div class="alergy-wrapper">
+    <div class="header">
+       Alergy 
+    </div>
+    <div class="input-wrapper">
+        <div class="input-title">
+            Alergy Text …
+        </div>
+        <textarea class="input-form" [value]='alergy' readonly></textarea>     
+        <button class="send-btn" (click)="sendAlergy(alergy)">Send</button>   
+    </div>
+    <div class="keyboard" [style.display]="keyboard?'block':'none'" appClickStopPropagation>
+        <div class="simple-keyboard"></div>
+    </div>
+    <div class="order_btns">  
+        <div class="order cancel" routerLink="/" >
+            <img class="inq-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button>Cancel</button>
+        </div>      
+        <div class="order back" [routerLink]="(['/menu/products', { outlets: { payment: null } }])">
+            <img class="gun-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button><i class="far fa-arrow-left" style="font-size: 21px; vertical-align:-2px;"> </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Back</button>
+        </div>        
+    </div>
+</div>

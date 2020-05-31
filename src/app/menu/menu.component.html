@@ -1,81 +1,82 @@
-<div class="wrapper">
-    <div class="logo"><img [src]="imgUrl+'logo.png'" alt="" srcset="" ></div>    
-    <div class="pay-head">Payment details</div>
-    <div class="payment-wrapper" *ngIf="orders.length">
-        <div class="product-detail">            
-            <ol style="padding:0 0 0 16px" >
-                <li class="ordered-product" *ngFor='let order of orders' >                           
-                    <div class="ordered-product-detail" *ngIf="!order.isSpecial">                                                      
-                        <div class="detail-menu">
-                            <div class="content">
-                                <div><div style="display: inline-block">{{order.title}}</div><div style="display: inline-block" *ngIf="order.size">({{order.size}})</div></div>                          
-                                <div class="quant-control">                                    
-                                    <div class="minus" (click)="order.quantity=order.quantity>0?order.quantity-1:0" >
-                                        <i class="fal  fa-minus"></i>
-                                    </div>
-                                    <div class="prod-quant">{{order.quantity}}</div>
-                                    <div class="plus" (click)="order.quantity=order.quantity+1"  >
-                                        <i class="fal fa-plus"></i>                                                                                
-                                    </div>
-                                </div>
-                            </div>
-                            <div><span *ngFor="let ingr of order.defaults" style="display: inline; font-size:12px">{{ingr.title}}<span *ngIf='ingr.selected_qty' style="display: inline; font-size:12px">(X {{ingr.selected_qty}})</span>, </span></div>
-                        </div>
-                        <div style='line-height:1.5'>$ {{getPrice(order)}}</div>
-                    </div> 
-
-                    <div class="ordered-product-detail" *ngIf="order.isSpecial">                                                      
-                        <div class="detail-menu">
-                            <div class="content">
-                                <div><div style="display: inline-block">{{order.title}}</div><div style="display: inline-block" *ngIf="order.size">({{order.size}})</div></div>                          
-                                <div class="quant-control">                                    
-                                    <div class="minus" (click)="order.quantity=order.quantity>0?order.quantity-1:0" >
-                                        <i class="fal  fa-minus"></i>
-                                    </div>
-                                    <div class="prod-quant">{{order.quantity}}</div>
-                                    <div class="plus" (click)="order.quantity=order.quantity+1"  >
-                                        <i class="fal fa-plus"></i>                                                                                
-                                    </div>
-                                </div>
-                            </div>
-                            <div><span *ngFor="let menu of order.menus">{{menu.default[0].title}}<span *ngIf="menu.default[0].size">({{menu.default[0].size.title}})</span><span *ngIf="menu.default[0].customizable">(<span *ngFor="let def of menu.default[0].defaults">{{def.title}}<span *ngIf="def.selected_qty">(X{{def.selected_qty}})</span>, </span>)</span>, </span></div>
-                        </div>
-                        <div style='line-height:1.5'>$ {{getPrice(order)}}</div>
-                    </div>                  
-                </li>                
-            </ol>
-        </div>
-        <div class="payment-detail">
-            <div class="total">
-                <div>TOTAL</div>
-                <div>$ {{getTotal()}}</div>
+<div (click)="resetTimer()">
+    <div class="inquire" *ngIf="checkUrl('products')">
+        <img class="inq-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+        <img src="usr_kiosk/assets/images/button-inq.svg" alt="" class="inq-btn">
+    </div>
+    <img [src]="imgUrl+'Outlaw.svg'" class="logo" alt="" srcset="" >  
+    <div class="order_detail_wrapper" *ngIf="checkUrl('products')">
+        <div class="custom_orders">
+            <div style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">Order details</div>
+            <div class="order" *ngFor="let co of getCustomOrders(orders)">
+                <div *ngIf="co.sizes[0].qty">
+                    <div class="selected_order">
+                        <div style="width: 25px; text-align: center;">{{co.sizes[0].qty}}</div>
+                        <div  style="width: 10px; text-align: center;">{{co.sizes[0].title.split("")[0]}}</div>  
+                        <div style="width: 180px; text-align: left;overflow: hidden; text-overflow: ellipsis;height: 19px;">{{co.title}}</div> 
+                        <div style="width: 65px; text-align:center;"><b  >${{co.sizes[0].price}}</b></div>
+                    </div>
+                    <div style="width: 90%; text-align: left;overflow: hidden; text-overflow: ellipsis; margin:auto "><ng-container *ngFor="let ingr of co.selectedIngrs">{{ingr.title}}, </ng-container></div>
+                   
+                </div>
+                <div *ngIf="co.sizes[1].qty">
+                    <div class="selected_order">
+                        <div style="width: 25px; text-align: center;">{{co.sizes[1].qty}}</div>
+                        <div  style="width: 10px; text-align: center;">{{co.sizes[1].title.split("")[0]}}</div>  
+                        <div style="width: 180px; text-align: left;overflow: hidden; text-overflow: ellipsis;height: 19px;">{{co.title}}</div> 
+                        <div style="width: 65px; text-align:center;"><b  >${{co.sizes[1].price}}</b></div>
+                    </div>
+                    <div style="width: 90%px; text-align: left;overflow: hidden; text-overflow: ellipsis; margin:auto "><ng-container *ngFor="let ingr of co.selectedIngrs">{{ingr.title}}, </ng-container></div>
+                </div>
             </div>
-            <div class="tax">
-                <div>TAX</div>
-                <div>$ {{getTax()}}</div>
+        </div>
+        <div class="other_orders">
+            <div class="orders">
+                <div class="order" *ngFor="let o of getOrders(orders)">
+                    <div *ngIf="o.sizes[0].qty">
+                        <div style="width: 19px; text-align: center;"><b>{{o.sizes[0].qty}}</b> </div>
+                        <span  style="width: 9px; text-align: center;">{{o.sizes[0].title.split("")[0]}}</span>  
+                        <span style="width: 145px; text-align: center;overflow: hidden; text-overflow: ellipsis;height: 19px;">{{o.title}}</span> 
+                        <b  style="width: 60px; text-align:center;">${{o.sizes[0].price}}</b>
+                    </div>
+                    <div *ngIf="o.sizes[1].qty">
+                        <div style="width: 19px; text-align: center;"><b>{{o.sizes[1].qty}}</b> </div>
+                        <span style="width: 9px; text-align: center; ">{{o.sizes[1].title.split("")[0]}}</span>  
+                        <span style="width: 145px; text-align: center; overflow: hidden;text-overflow: ellipsis;height: 19px;">{{o.title}}</span> 
+                        <b style="width: 60px; text-align: center;">${{o.sizes[1].price}}</b>
+                    </div>
+                </div>
             </div>
-        </div> 
-        <div class="final-pay-container" >
-            <div>Pay This Amount</div>
-            <div>$ {{getPay()}} </div>
+            <div class="payment">
+                <div>
+                    <div>Amount of Order</div>
+                    <div>${{orders.length?getSubTotal(orders):0}}</div>
+                </div>
+                <div>
+                    <div>Tax</div>
+                    <div>${{orders.length?getTax(getSubTotal(orders),tax):0}}</div>
+                </div>
+                <div>
+                    <div>Total</div>
+                    <div>${{orders.length?getTotal(getSubTotal(orders),tax):0}}</div>
+                </div>
+            </div>
         </div>
-        <div class="button-container">
-            <button [routerLink]="['/']" class="cancel">Cancel</button>
-            <button class="pay" (click)="pay()">Pay<span>$ {{getPay()}}</span></button>
+    </div>
+    <div class="actions" *ngIf="checkUrl('products')">
+        <div class="order_button"  (click)="makeOrder()">
+            <img class="inq-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button>Pay & Order</button>
         </div>
-    </div>    
-    <button class="back-bttn" (click)="goBack()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="14" viewBox="0 0 32 14">
-                <defs>
-                    <style>.a{fill:#5e5b58;}</style>
-                </defs>
-                <g transform="translate(0 0)">
-                    <path class="a" d="M.185,143.579,7.3,137.2a.6.6,0,0,1,.648-.091.529.529,0,0,1,.352.529v4.084H31.407a.581.581,0,0,1,.426.164A.564.564,0,0,1,32,142.3v3.5a.562.562,0,0,1-.167.419.582.582,0,0,1-.426.164H8.3v4.084a.549.549,0,0,1-.352.529.584.584,0,0,1-.648-.109L.185,144.435A.591.591,0,0,1,0,144,.572.572,0,0,1,.185,143.579Z" transform="translate(0 -137.052)"/>
-                </g>
-            </svg>
-            back
-    </button>
-</div>
-<div>        
-    <app-products></app-products>
+        <div class="cancel_button" (click)="cancelAll()" >
+            <img class="inq-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+            <button>Cancel</button>
+        </div>
+        
+    </div>
+    <!--<app-destruct></app-destruct>-->
+    
+    
+    <router-outlet></router-outlet>
+    
+    
 </div>

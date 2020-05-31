@@ -5,20 +5,87 @@
     height:100%;
     width:100%;
     z-index:1000000000;
-    background-color: rgba(0,0,0,0.9);
-    .auth-form{
+    background-color: rgba(255,255,255,0.9);
+    .login-form{
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        width: 814px;
+        height: 686px;
+        background: #E0E0E0 0% 0% no-repeat padding-box;
+        box-shadow: -5px -1px 13px #000000D1;
+        .header{
+            font-size:26px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .keyboard{
+            position: absolute;
+            bottom: 0;
+            left:0;
+            right: 0;
+            background: #575757 0% 0% no-repeat padding-box;
+        }
+        .frm-input{
+            height: 73px;
+            display: block;
+            margin:29px auto;
+            padding:21.5px 0 21.5px 24px;
+            font-size: 26px;
+            outline: 0;
+            width: 433px;
+            &.focused{
+                border: 2px solid #FFE521;
+            }
+            
+        }
+        .enter-bttn{
+            width: 134px;
+            position: relative;
+            height:100px;
+            margin: auto;
+            .btn-img{
+                position: absolute;
+                left: 25px;
+                top:0;
+                width: 73px;
+                height: 71px;
+                z-index: 10;
+            }
+            button{
+                position: absolute;
+                left: 0;
+                bottom:0;
+                width: 134px;
+                height: 43px;
+                box-shadow: 3px 3px 3px #000000,  3px 3px 3px #000000 inset;
+                border: 6px solid #96C440;
+                border-radius: 21px;
+                font-size: 16px;
+            }
+        }
+    }
+
+}
+
+
+/*    .auth-form{
         position:absolute;
-        top:calc(50% - 150px);
-        left:calc(50% - 200px);
-        background-color:white;
-        height:300px;
-        width:400px;
-        padding:10px 10px;
+        top:227px;
+        left:50%;
+        transform: translate(-50%,0);
+        background-color:#E0E0E0;
+        box-shadow: -5px -1px 13px #000000D1;
+        height:686px;
+        width:80%;
+        padding:10px 0;
         input{
             display:block;
-            width:calc(100% - 24px);
+            width:50%;
             margin:10px auto;
             padding:5px 15px;
+            
             font-size:16px;
             outline:0
         }
@@ -34,10 +101,10 @@
     }
     .keyboard{
     position:absolute;
-    background-color: white;
-    width:1200px;
-    left:calc(50% - 600px);
-    bottom:100px
+    background-color: #575757;
+    width:100%;
+    bottom:0;
+    height:225px
     
 }
 .auth-form.focused{
@@ -46,5 +113,4 @@
 input.focused{
    border:1px solid #F2AC21; 
    color:#F2AC21; 
-}
-}
+}*/

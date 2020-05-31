@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <app-tip *ngIf="route==='tip'" 
+   [subtotal]="orderData.subTotal"
+   [total]="orderData.total" 
+   [tip]="orderData.tip"
+   [tax]="orderData.tax"
+   (changeroute)="changeRoute($event)" 
+   [hasTip]='hasTip'
+   (settip)="changeTip($event)"></app-tip>
+  <app-cash-pay *ngIf="route=='cash_pay'" [total]="orderData.total" (oncheckAmmount)="checkAmmount($event)" ></app-cash-pay>
+  <app-cash-pay-finish [paid]="orderData.payed" [price]="orderData.total" *ngIf="route==='finish_cash'"></app-cash-pay-finish> 
+  <app-card-pay *ngIf="route=='card_pay'"></app-card-pay>
+  <app-special-instructions
+   *ngIf="route=='spec-instruction'" 
+   (sendSpecialInstruction)="setSpecInstruction($event)"
+   (changeroute)="changeRoute($event)" 
+   ></app-special-instructions>
+  <app-alergy-info *ngIf="route=='alergy-info'" 
+  (sendAlergyInfo)='setAlergyInfo($event)'
+  (changeroute)="changeRoute($event)" 
+  ></app-alergy-info>
+  <app-phone (addphone)="addPhone($event)" *ngIf="route==='phone'"></app-phone>
+</div>

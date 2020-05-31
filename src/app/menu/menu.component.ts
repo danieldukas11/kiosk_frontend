@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuService } from '../shared/services/menu.service';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { RoutingService } from '../shared/services/routing.service';
-import {PaymentService} from '../shared/services/payment.service';
 import { Router } from '@angular/router';
-import { PlatformLocation } from '@angular/common';
+import { Store, select } from '@ngrx/store';
+import {loadMenu} from '../shared/ngrx/actions/menu.action';
+import { Observable, Subscription } from 'rxjs';
+import { updateOrder } from '../shared/ngrx/actions/order.action';
+import {DestructComponent} from '../destruct/destruct.component';
 
 @Component({
   selector: 'app-menu',
@@ -12,97 +13,73 @@ import { PlatformLocation } from '@angular/common';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, OnDestroy {
+  @ViewChild(DestructComponent) destruct: DestructComponent;
   imgUrl = environment.staticUrl + 'images/';
-  Subscriptions = [];
-  orders = [];
-  route;
+  orders: any[] = [];
+  orders$: Observable<any[]> = this.orderStore.pipe(select('orders'));
+  sub: Subscription;
   tax = 5;
   constructor(
-    private MS: MenuService,
-    private rs: RoutingService,
     private router: Router,
-    private loc: PlatformLocation,
-    private ps: PaymentService
+    private menuStore: Store<{ menu: any[] }>,
+    private orderStore: Store<{orders: any[]}>,
   ) {
+    this.router.navigate(['menu/products']);
    }
-
   ngOnInit() {
-    this.rs.setRoute('menu');
-    this.router.navigate(['menu']);
-    this.loc.onPopState(() => {
-      this.rs.setRoute('');
-      this.router.navigate(['/']);
+    this.menuStore.dispatch(loadMenu());
+    this.sub = this.orders$.subscribe((data) => {
+      this.orders = JSON.parse(JSON.stringify(data));
     });
-    this.Subscriptions.push(
-      this.MS.getMenu().subscribe((data) => {
-                this.MS.setMenu(data);
-      }),
-      this.MS.getSpecials().subscribe((data) => {
-        this.MS.setSpecials(data);
-      }),
-      this.MS.forPay.subscribe((data: any) => {
-        if (data.action === 'add') {
-          data.prod.isSpecial = data.special;
-          data.prod.quantity = 1;
-          this.orders.push(data.prod);
-        } else if (data.action === 'update') {
-          data.prod.isSpecial = data.special;
-          data.prod.quantity = 1;
-          this.orders.pop();
-          this.orders.push(data.prod);
-        }
-      }),
-      this.rs.$route.subscribe(route => {
-        this.route = route;
-      })
-    );
   }
-
-  getPrice(order) {
-    return Math.round(order.price * 100 * order.quantity) / 100;
+  getOrders(orders: any[]) {
+    return orders.filter((o) => o.customizable === false);
   }
-  ngOnDestroy() {
-    this.rs.setRoute('');
-    this.orders = [];
-    this.MS.addForPay('');
-    this.ps.setPaymentData([]);
-    this.rs.setPayRoute(false);
-    this.Subscriptions.forEach(s => s.unsubscribe());
+  getCustomOrders(orders: any[]) {
+    return orders.filter((o) => o.customizable === true);
   }
-
-
-  getTotal() {
-    return  this.orders.reduce((a, b) => {
-      return Math.round((a + b.price * b.quantity) * 100) / 100; } , 0);
-  }
-  getTax() {
-    return Math.round((this.getTotal() * this.tax / 100) * 100 ) / 100;
-  }
-  getPay() {
-    return Math.round((this.getTotal() + this.getTax()) * 100) / 100;
-  }
-
-  goBack() {
-    switch (this.route) {
-      case 'menu':
-      this.router.navigate(['/']);
-      break;
-      case 'customize':
-      this.rs.setRoute('menu');
-      break;
-      case 'combo':
-      this.rs.setRoute('menu');
-      break;
-      case 'customize-combo-prod':
-      this.rs.setRoute('combo');
-      break;
+  makeOrder() {
+    if (this.orders && this.orders.length) {
+      this.router.navigate(['/menu/products', { outlets: { payment: ['start'] } }]);
     }
   }
-
-  pay() {
-    this.ps.setPaymentData(this.orders);
-    this.rs.setPayRoute(true);
+  cancelAll() {
+    this.router.navigateByUrl('/');
   }
 
+  checkUrl(url) {
+    const u = this.router.url.split('/');
+    return u[u.length - 1] === url;
+  }
 
+  getSubTotal(orders) {
+    let price = 0;
+    orders.forEach(order => {
+      if (order.sizable && !order.customizable) {
+        order.sizes.forEach(s => {
+          price += s.price * s.qty;
+        });
+      }
+      if (order.sizable && order.customizable) {
+          order.sizes.forEach(s => {
+            price += s.price * s.qty;
+          });
+      }
+    });
+    return Math.round(price * 100) / 100;
+  }
+  getTax(ammount, tax) {
+    return Math.round((ammount * tax / 100) * 100) / 100;
+  }
+  getTotal(ammount, tax) {
+    return Math.round((ammount + (ammount * tax / 100)) * 100) / 100;
+  }
+  resetTimer() {
+   // this.destruct.resetTimer();
+
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.orderStore.dispatch(updateOrder(JSON.parse(JSON.stringify({order: []}))));
+  }
 }

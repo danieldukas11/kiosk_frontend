@@ -1,0 +1,71 @@
+.pin-wrapper{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index:1000000000;
+    background-color: rgba(255,255,255,0.9);
+    .pin-form{
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        width: 256px;
+        height: 470px;
+        background: #E0E0E0 0% 0% no-repeat padding-box;
+        box-shadow: -5px -1px 13px #000000D1;
+        .header{
+            font-size: 26px;
+            text-align: center;
+            margin:50px auto 29px;
+            font-weight: bold;
+
+        }
+        .input{
+            margin: auto;
+            width: 148px;
+            overflow: hidden;
+            input{
+                width:37px;
+                height: 37px;
+                background-color: #FFE942;
+                border: 1px solid #707070;
+                outline: 0;
+                text-align: center;
+                font-size: 50px;
+
+            }
+        }
+        .keyboard{
+            width: 161px;;
+            height: 223px;
+            background: #575757 0% 0% no-repeat padding-box;
+            box-shadow: 3px 3px 3px #000000D9;
+            padding:8px 0  8px 2px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%,0);
+            .key{
+                background: #000000 0% 0% no-repeat padding-box;
+                box-shadow: 3px 3px 5px #000000;
+                border: 1px solid #707070;
+                width: 46px;
+                height: 46px;
+                border-radius: 12px;
+                margin:0 7px 7px 0;
+                font-weight:  Bold ;
+                font-size:26px;
+                color: #FFFFFF;
+                vertical-align: top;
+                outline:0
+                
+            }
+            .key-bkspc{
+            width: calc(2 * 100% / 3 - 7px);;
+            }
+        }                
+    
+    }
+}

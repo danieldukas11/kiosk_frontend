@@ -1,0 +1,142 @@
+<!--<div class="tip-wrapper">
+    <div class="first">
+     
+    </div>
+    <div class="second">
+        <input type="text" class="tip-input" placeholder="Enter custom tip" readonly [value]="Tip">
+        <div class="keyboard">
+            <button class="key" (click)="text('1')" [disabled]="hasTip">1</button>
+            <button class="key" (click)="text('2')" [disabled]="hasTip">2</button>
+            <button class="key" (click)="text('3')" [disabled]="hasTip">3</button>
+            <button class="key" (click)="text('4')" [disabled]="hasTip">4</button>
+            <button class="key" (click)="text('5')" [disabled]="hasTip">5</button>
+            <button class="key" (click)="text('6')" [disabled]="hasTip">6</button>
+            <button class="key" (click)="text('7')" [disabled]="hasTip">7</button>
+            <button class="key" (click)="text('8')" [disabled]="hasTip">8</button>
+            <button class="key" (click)="text('9')" [disabled]="hasTip">9</button>
+            <button class="key" (click)='setTip(Tip)'><i class="fas fa-long-arrow-alt-right"></i></button>
+            <button class="key" (click)="text('0')" [disabled]="hasTip">0</button>
+            <button class="key " (click)="Tip=backspace(Tip)" [disabled]="hasTip"><i class="fas fa-backspace"></i></button>
+        </div>
+        <button class="delay_btn">Delay Order Pic up at</button>
+        <div class="timer">
+            <span class="time_data">07</span>
+            <span class="time_data">:</span>
+            <span class="time_data">25</span>
+        </div>
+    </div>
+    <div class="third">
+        <button class="tip-button" [disabled]="hasTip" (click)="setTip(calcTip(30,subtotal))">Pay 30% Tip ${{calcTip(30,subtotal)}}</button>
+        <button class="tip-button" [disabled]="hasTip" (click)="setTip(calcTip(30,subtotal))">Pay 20% Tip $ {{calcTip(20,subtotal)}}</button>
+        <button class="tip-button" [disabled]="hasTip" (click)="setTip(calcTip(30,subtotal))">Pay 10% Tip $ {{calcTip(10,subtotal)}}</button>
+        <button class="tip-button" [disabled]="hasTip" (click)="setTip(0)">Thanks No Tip</button>
+        <button class="price-button">${{total}}</button>
+        <div class="payment_buttons" *ngIf="hasTip">
+            <div class="cash_pay" (click)="changeRoute('cash_pay')">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button>Pay Cash</button>
+            </div>
+            <div class="card_pay" (click)="changeRoute('card_pay')">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button>Pay Card</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="tip-wrapper">
+   <div class="first-row">
+        <button class="delay">
+            Delay Order Pic up at
+        </button>
+        <div class="infobuttons">
+            <div class="content" >
+                Do You have any Special Requests?
+            </div>
+            <div class="button" (click)="changeRoute('spec-instruction')">
+                <img src="" alt="">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button>Yes</button>
+            </div>
+            <div class="content">
+                Do You have any Food Allergy’s?
+            </div>
+            <div class="button second " (click)="changeRoute('alergy-info')">
+                <img src="" alt="">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button class="orange">Yes</button>
+            </div>
+
+        </div>
+        <div class="tip-container">
+            <div class="first-col">
+                <input type="text" class="tip-input" placeholder="Enter custom tip" readonly [value]="Tip">
+                <div class="keyboard">
+                    <button class="key" (click)="text('1')" [disabled]="hasTip">1</button>
+                    <button class="key" (click)="text('2')" [disabled]="hasTip">2</button>
+                    <button class="key" (click)="text('3')" [disabled]="hasTip">3</button>
+                    <button class="key" (click)="text('4')" [disabled]="hasTip">4</button>
+                    <button class="key" (click)="text('5')" [disabled]="hasTip">5</button>
+                    <button class="key" (click)="text('6')" [disabled]="hasTip">6</button>
+                    <button class="key" (click)="text('7')" [disabled]="hasTip">7</button>
+                    <button class="key" (click)="text('8')" [disabled]="hasTip">8</button>
+                    <button class="key" (click)="text('9')" [disabled]="hasTip">9</button>
+                    <button class="key" (click)='setTip(Tip)'><i class="fas fa-long-arrow-alt-right"></i></button>
+                    <button class="key" (click)="text('0')" [disabled]="hasTip">0</button>
+                    <button class="key " (click)="Tip=backspace(Tip)" [disabled]="hasTip"><i class="fas fa-backspace"></i></button>
+                </div>
+            </div>
+            <div class="second-col">
+                <div class="header">Tip</div>
+                <button class="tip-button" [disabled]="hasTip" (click)="setTip(calcTip(30,subtotal))">Pay 30% Tip ${{calcTip(30,subtotal)}}</button>
+                <button class="tip-button" [disabled]="hasTip" (click)="setTip(calcTip(30,subtotal))">Pay 20% Tip $ {{calcTip(20,subtotal)}}</button>
+                <button class="tip-button" [disabled]="hasTip" (click)="setTip(calcTip(30,subtotal))">Pay 10% Tip $ {{calcTip(10,subtotal)}}</button>
+                <button class="tip-button" [disabled]="hasTip" (click)="setTip(0)">Thanks No Tip</button>
+                <button class="price-button">${{total}}</button>               
+            </div>
+        </div>
+    </div>
+    <div class="second-row">
+        <div class="payment-buttons" *ngIf="hasTip">
+            <div class="cash_pay" (click)="changeRoute('cash_pay')">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button>Pay Cash</button>
+            </div>
+            <div class="card_pay" (click)="changeRoute('card_pay')">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button>Pay Card</button>
+            </div>
+        </div>
+        <div class="payment-detail">
+            <div class="pay-row">
+                <div>Amount of Order</div>
+                <div>
+                    ${{subtotal}}
+                </div>
+            </div>
+            <div class="pay-row">
+                <div>Tax</div>
+                <div>${{tax}}</div>
+            </div>
+            <div class="pay-row">
+                <div>Tip</div>
+                <div>${{tip}}</div>
+            </div>
+            <div class="pay-row">
+                <div>Total</div>
+                <div>${{total}}</div>
+            </div>
+        </div>
+    </div>  
+    <div class="third-row">
+        <div class="action-buttons">
+            <div class="back-button" [routerLink]="(['/menu/products', { outlets: { payment: null } }])">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button><i class="far fa-arrow-left"> </i> Back</button>
+            </div>
+            <div class="cancel-button" routerLink=''>
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button>cancel</button>
+            </div>
+        </div>
+    </div>  
+</div>

@@ -1,0 +1,26 @@
+<div class="pin-wrapper">
+    <toaster-container></toaster-container>
+    <div class="pin-form">
+        <div class="header">Enter Pin Code</div>
+        <div  class="input">
+            <input type="password" name="" [value]='pin[3]?pin[3]:""' readonly>
+            <input type="password" name="" [value]='pin[2]?pin[2]:""'  readonly>
+            <input type="password" name="" [value]='pin[1]?pin[1]:""'  readonly>
+            <input type="password" name="" [value]='pin[0]?pin[0]:""' readonly>
+        </div>
+        <div class="keyboard">
+            <button class="key" (click)="text('1')">1</button>
+            <button class="key" (click)="text('2')" >2</button>
+            <button class="key" (click)="text('3')" >3</button>
+            <button class="key" (click)="text('4')" >4</button>
+            <button class="key" (click)="text('5')" >5</button>
+            <button class="key" (click)="text('6')" >6</button>
+            <button class="key" (click)="text('7')" >7</button>
+            <button class="key" (click)="text('8')" >8</button>
+            <button class="key" (click)="text('9')" >9</button>
+            <button class="key" (click)='setPin(pin)'><i class="fas fa-long-arrow-alt-right"></i></button>
+            <button class="key" (click)="text('0')" >0</button>
+            <button class="key " (click)="pin=backSpace(pin)" ><i class="fas fa-backspace"></i></button>
+        </div>
+    </div>
+</div>
