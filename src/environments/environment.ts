@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  // url:"http://64.225.3.114/user_kiosk/",
-  url: 'http://localhost/user_kiosk/',
+  url: 'http://64.225.3.114/user_kiosk/',
+  // url: 'http://localhost/user_kiosk/',
   staticUrl: 'http://64.225.3.114/',
-  socketUrl: 'localhost/'
+  // socketUrl: 'localhost/'
+  socketUrl: 'http://64.225.3.114/'
 };
 
 /*

@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { Socket } from 'ngx-socket-io';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router} from '@angular/router';
+import {Socket} from 'ngx-socket-io';
+import {Observable} from 'rxjs';
+import {Store, select} from '@ngrx/store';
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -24,8 +25,9 @@ export class PaymentComponent implements OnInit {
   sub;
   route = 'tip';
   hasTip = false;
+
   constructor(
-    private orderStore: Store<{orders: any[]}>,
+    private orderStore: Store<{ orders: any[] }>,
     private socket: Socket,
     private router: Router
   ) {
@@ -38,9 +40,9 @@ export class PaymentComponent implements OnInit {
         this.router.navigateByUrl('/');
       }*/
       this.orderData.orderedProducts = JSON.parse(JSON.stringify(data));
-      this.orderData.subTotal = this.getSubTotal( this.orderData.orderedProducts);
+      this.orderData.subTotal = this.getSubTotal(this.orderData.orderedProducts);
       this.orderData.tax = Math.round((this.orderData.subTotal * 5 / 100) * 100) / 100;
-      this.orderData.total = Math.round((this.orderData.subTotal + this.orderData.tax) * 100) / 100;      
+      this.orderData.total = Math.round((this.orderData.subTotal + this.orderData.tax) * 100) / 100;
     });
     this.socket.emit('make_order', this.orderData);
   }
@@ -62,28 +64,34 @@ export class PaymentComponent implements OnInit {
     });
     return Math.round(price * 100) / 100;
   }
+
   changeRoute(e) {
     this.route = e;
   }
+
   changeTip(e) {
     this.orderData.tip = e;
     this.orderData.total = Math.round((this.orderData.total + e) * 100) / 100;
     this.hasTip = true;
   }
+
   checkAmmount(ammount) {
     this.orderData.payed = ammount;
     if (ammount >= this.orderData.total) {
       this.route = 'finish_cash';
     }
   }
+
   setSpecInstruction(data) {
     this.orderData.special_instructions = data;
     this.route = 'tip';
   }
+
   setAlergyInfo(data) {
     this.orderData.alergy_info = data;
     this.route = 'tip';
   }
+
   addPhone(phone) {
     this.orderData.phone = phone;
   }

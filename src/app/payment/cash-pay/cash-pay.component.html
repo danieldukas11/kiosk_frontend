@@ -1,11 +1,19 @@
 <div class="cash_wrapper">
-    <div class="arrow">
-        <img src="usr_kiosk/assets/images/arrow-left.svg" alt="">
+  <div class="arrow">
+    <img src="usr_kiosk/assets/images/arrow-left.svg" alt="" (click)="goBack()">
+  </div>
+  <div class="cash_pay_wrapper">
+    <div class="first_text">Insert ${{total}} Cash Here</div>
+    <div>Inserted Ammount ${{inserted}}</div>
+    <div class="second_text">Be Sure && Collect Change!!!</div>
+    <div>Collect Receipt!!!</div>
+  </div>
+</div>
+<div class="third-row">
+  <div class="action-buttons">
+    <div class="back-button" (click)="goBack()">
+      <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+      <button><i class="far fa-arrow-left"> </i> Back</button>
     </div>
-    <div class="cash_pay_wrapper">
-        <div class="first_text">Insert ${{total}} Cash Here</div>
-        <div>Inserted Ammount ${{inserted}}</div>
-        <div class="second_text">Be Sure && Collect Change!!!</div>
-        <div>Collect Receipt!!!</div>
-    </div>
+  </div>
 </div>

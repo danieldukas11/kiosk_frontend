@@ -35,6 +35,7 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { PinComponent } from './pin/pin.component';
 import { KioskAdminComponent } from './kiosk-admin/kiosk-admin.component';
 import { AdminHomeComponent } from './kiosk-admin/admin-home/admin-home.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 const config: SocketIoConfig = { url: environment.socketUrl, options: {
   query: `ns=5e006191363b1b1dd14e4f49`,
   resource: 'solo'
@@ -66,6 +67,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     SocketIoModule.forRoot(config),

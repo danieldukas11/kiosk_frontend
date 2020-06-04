@@ -1,18 +1,18 @@
 
 <div class="login-wrapper" appClickStopPropagation>
   <toaster-container></toaster-container>
-  
+
 <div class="login-form">
   <h1 class="header">Sign In</h1>
-  <input type="text" placeholder="Email" class="frm-input"  (click)="selectInp('username')" 
-  appClickStopPropagation  readonly
-  [ngClass]='selectedInput=="username"?"focused":""' 
+  <input type="text" placeholder="Email" class="frm-input"  (click)="selectInp('username')"
+  appClickStopPropagation
+  [ngClass]='selectedInput=="username"?"focused":""'
         name="username" [(ngModel)]="user.userName"
   >
-  <input type="password" placeholder="Password" class="frm-input"  
-   appClickStopPropagation readonly (click)="selectInp('password')" 
+  <input type="password" placeholder="Password" class="frm-input"
+   appClickStopPropagation  (click)="selectInp('password')"
         [ngClass]='selectedInput=="password"?"focused":""' name="password"
-         [(ngModel)]="user.password"  
+         [(ngModel)]="user.password"
   >
   <div class="enter-bttn" (click)="login()">
     <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
@@ -28,11 +28,11 @@
 <!-- <form action="" class="auth-form " [ngClass]='selectedInput!=""?"focused":""' >
        <h2 style="text-align:center; font-size: 26px;">Sign In</h2>
        <input type="text"  placeholder="Username/Email"
-        appClickStopPropagation readonly 
-        (click)="selectInp('username')" [ngClass]='selectedInput=="username"?"focused":""' 
-        name="username" [(ngModel)]="user.userName">      
+        appClickStopPropagation readonly
+        (click)="selectInp('username')" [ngClass]='selectedInput=="username"?"focused":""'
+        name="username" [(ngModel)]="user.userName">
        <input type="password" placeholder="password"
-        appClickStopPropagation readonly (click)="selectInp('password')" 
+        appClickStopPropagation readonly (click)="selectInp('password')"
         [ngClass]='selectedInput=="password"?"focused":""' name="password"
          [(ngModel)]="user.password">
        <button (click)="login()">Log In</button>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-card-pay',
@@ -7,11 +7,17 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class CardPayComponent implements OnInit {
   @Input() total;
-  constructor(
-  ) { }
+  @Output() changeRoute = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+
+  goBack() {
+    this.changeRoute.emit('tip');
+  }
 
 }
