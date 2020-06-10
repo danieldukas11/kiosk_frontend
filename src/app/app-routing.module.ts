@@ -31,14 +31,15 @@ const routes: Routes = [
   },
   {
     path : 'kioskadmin',
+    loadChildren: () => import('./kiosk-admin/kiosk-admin.module').then(m => m.KioskAdminModule),
     component : KioskAdminComponent,
     canActivate : [AuthGuard, PinAuthGuard],
-    children: [
-      {
-        path: '',
-        component: AdminHomeComponent
-      }
-    ]
+    // children: [
+    //   {
+    //     path: '',
+    //     component: AdminHomeComponent
+    //   }
+    // ]
   },
   {
     path: 'menu',

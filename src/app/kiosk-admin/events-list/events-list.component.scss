@@ -1,0 +1,13 @@
+ul {
+  list-style: none;
+
+  .event {
+    cursor: pointer;
+    .name {
+    }
+
+    .info {
+      font-style: italic;
+    }
+  }
+}

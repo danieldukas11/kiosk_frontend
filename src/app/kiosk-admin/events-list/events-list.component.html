@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let event of events" class="event" (click)="router.navigate(['/kioskadmin/event/'+event._id])">
+    <h3 class="name">{{event.name}}</h3>
+    <p class="info">
+      <span class="date">{{event.date}}</span>,
+      <span class="place">{{event.place}}</span>...
+    </p>
+  </li>
+</ul>

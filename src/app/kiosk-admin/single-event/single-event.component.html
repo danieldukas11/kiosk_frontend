@@ -1,0 +1,26 @@
+<div class="event">
+  <div class="event-info">
+    <p class="cp">Kiosk 1 Control Panel</p>
+    <p class="name">{{selectedEvent.name}}</p>
+    <p class="date">{{getEventDate(selectedEvent.date)}}</p>
+  </div>
+  <div class="action">
+    <p>Start event</p>
+  </div>
+  <div class="action">
+    <p>Close event</p>
+  </div>
+  <div class="action">
+    <p>Give Refund</p>
+  </div>
+  <div class="action" (click)="router.navigate(['/'])">
+    <p>Go to Main Admin</p>
+  </div>
+  <div class="action">
+    <p>Bill/Coin Main Admin</p>
+  </div>
+  <div class="action" (click)="router.navigate(['kioskadmin'])">
+    <p>Back to Kiosk</p>
+  </div>
+
+</div>
