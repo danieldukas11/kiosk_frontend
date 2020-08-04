@@ -1,0 +1,74 @@
+.give-refund-container {
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  opacity: 1;
+  backdrop-filter: blur(30px);
+  text-align: center;
+  width: 40%;
+  margin: auto;
+
+  h1 {
+    font: normal bold 51px/42px Arial;
+  }
+
+  form {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+    .left-side {
+      .reason {
+        width: 483px;
+        height: 384px;
+        background: #FFFFFF 0 0 no-repeat padding-box;
+        border: 1px solid #F2AC21;
+        resize: none;
+        box-shadow: 2px 2px 4px #000000;
+        padding-left: 20px;
+      }
+
+      .reason::placeholder {
+        font: Bold 20px/27px Arial;
+        color: #000000;
+      }
+    }
+
+    .right-side {
+      margin-left: 50px;
+
+      .ticket-number {
+        width: 246px;
+        height: 49px;
+        background: #FFFFFF 0 0 no-repeat padding-box;
+        box-shadow: 2px 2px 4px #000000;
+        border: 1px solid #F2AC21;
+      }
+
+      .ticket-number::placeholder {
+        font: normal normal 20px/27px Arial;
+        color: #000000;
+        text-align: center;
+      }
+
+      button {
+        width: 246px;
+        height: 49px;
+        background: #FFFFFF 0 0 no-repeat padding-box;
+        box-shadow: 2px 2px 4px #000000;
+        border: 1px solid #F2AC21;
+        font: normal normal 20px/27px Arial;
+        color: #000000;
+        margin-top: 15px;
+      }
+
+      .refund-2 {
+        height: 83px;
+      }
+    }
+  }
+
+  .simple-keyboard {
+    margin-top: 57px;
+    background: #575757 0 0 no-repeat padding-box;
+    border: 1px solid #707070;
+  }
+}
