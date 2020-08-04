@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { Subscription, Observable, fromEvent } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { updateOrder } from '../shared/ngrx/actions/order.action';
-import { Router } from '@angular/router';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {Subscription, Observable, fromEvent} from 'rxjs';
+import {Store, select} from '@ngrx/store';
+import {updateOrder} from '../shared/ngrx/actions/order.action';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ingredients',
@@ -21,21 +21,21 @@ export class IngredientsComponent implements OnInit, OnDestroy {
   selectedSpec = '';
 
 
-
   constructor(
-    private orderStore: Store<{orders: any[]}>,
+    private orderStore: Store<{ orders: any[] }>,
     private router: Router) {
-      this.product = this.router.getCurrentNavigation().extras.state;
-      console.log(this.product);
-     }
+    this.product = this.router.getCurrentNavigation().extras.state;
+    console.log(this.product);
+  }
 
   ngOnInit(): void {
     this.Subscriptions.push(
-        this.orders$.subscribe((data) => {
-          this.orders = JSON.parse(JSON.stringify(data));
-        })
+      this.orders$.subscribe((data) => {
+        this.orders = JSON.parse(JSON.stringify(data));
+      })
     );
   }
+
   openPopup(id) {
     this.popupId = id;
   }
@@ -43,14 +43,15 @@ export class IngredientsComponent implements OnInit, OnDestroy {
   removeIngredient(ingr) {
     ingr.selected_qty = null;
     ingr.selected = false;
-    this.product.selectedIngrs = this.product.selectedIngrs.filter(si => si._id !==  ingr._id);
+    this.product.selectedIngrs = this.product.selectedIngrs.filter(si => si._id !== ingr._id);
     this.popupId = '';
     console.log(this.product);
   }
+
   addIngredient(ingr, qty) {
     ingr.selected_qty = qty;
     ingr.selected = true;
-    this.product.selectedIngrs = this.product.selectedIngrs.filter(si => si._id !==  ingr._id);
+    this.product.selectedIngrs = this.product.selectedIngrs.filter(si => si._id !== ingr._id);
     this.product.selectedIngrs.unshift(ingr);
     this.popupId = '';
     this.product.sizes[0].price = Number(this.product.sizes[0].price);
@@ -70,6 +71,7 @@ export class IngredientsComponent implements OnInit, OnDestroy {
         break;
     }
   }
+
   getIngrPrice(ingr) {
     switch (ingr.selected_qty) {
       case 'Included':
@@ -80,10 +82,14 @@ export class IngredientsComponent implements OnInit, OnDestroy {
         return ingr.light_price;
     }
   }
+
   makeOrder(prod) {
     this.orders.push(prod);
     this.orderStore.dispatch(updateOrder(JSON.parse(JSON.stringify({order: this.orders}))));
     this.router.navigateByUrl('/menu/products');
+  }
+  selectwrap(wrap){
+    this.product.selectedWrap=wrap
   }
 
   increaseQty(prod, ind) {
@@ -95,9 +101,12 @@ export class IngredientsComponent implements OnInit, OnDestroy {
       prod.sizes[ind].qty--;
     }
   }
+
   selectspec(spec) {
     this.product.selectedSpeces = this.product.selectedSpeces.filter((spc) => {
-      if (spc.cat_id === spec.cat_id) {spc.selected = false; }
+      if (spc.cat_id === spec.cat_id) {
+        spc.selected = false;
+      }
       return spc.cat_id !== spec.cat_id;
     });
     this.selectedSpec = spec._id;
@@ -109,12 +118,13 @@ export class IngredientsComponent implements OnInit, OnDestroy {
     switch (sq) {
       case 'Included':
         return ' ';
-        case 'Double':
+      case 'Double':
         return '(2X) ';
-        case 'Light':
+      case 'Light':
         return '(0.5X) ';
     }
   }
+
   ngOnDestroy() {
     this.Subscriptions.forEach(s => s.unsubscribe());
   }

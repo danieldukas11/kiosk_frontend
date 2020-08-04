@@ -1,4 +1,5 @@
 @import '../../../assets/styles/mixins';
+
 .card_wrapper {
   position: absolute;
   top: 0px;
@@ -52,4 +53,36 @@
   }
 
 
+}
+
+.signature-popup {
+  position: absolute;
+  background-color: orange;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 272px;
+  width: 777px;
+  height: 526px;
+  z-index: 500000000000000;
+
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 0;
+    padding: 30px;
+
+    button {
+      font-size: 20px;
+    }
+  }
+
+  signature-pad {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 }

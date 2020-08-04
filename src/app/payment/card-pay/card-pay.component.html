@@ -1,20 +1,30 @@
 <div class="card_wrapper">
-  <div class="arrow">
-    <img src="usr_kiosk/assets/images/arrow-bottom.svg" alt="">
-  </div>
-  <div class="card_pay_wrapper">
-    <div class="first_text">Pay ${{total}}</div>
-    <div>Insert Card Or Swipe Here</div>
-    <div class="second_text">Collect Receipt!!!</div>
-    <div>Maybe You Did Not Do?</div>
-  </div>
-
-  <div class="third-row">
-    <div class="action-buttons">
-      <div class="back-button" (click)="goBack()">
-        <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
-        <button><i class="far fa-arrow-left"> </i> Back</button>
-      </div>
+    <div class="arrow">
+        <img src="usr_kiosk/assets/images/arrow-bottom.svg" alt="">
     </div>
-  </div>
+    <div class="card_pay_wrapper" *ngIf="!signature">
+        <div class="first_text">Pay ${{total}}</div>
+        <div>Insert Card Or Swipe Here</div>
+        <div class="second_text">Collect Receipt!!!</div>
+        <div>Maybe You Did Not Do?</div>
+    </div>
+    <div class="signature-popup" *ngIf="signature">
+        <h1>please sign to continue</h1>
+        <signature-pad #sign [options]="signaturePadOptions"
+                       (onEndEvent)="drawComplete()"></signature-pad>
+        <div class='buttons' *ngIf="signImgae">
+            <button (click)="clear()">Clear</button>
+            <button (click)="continue()">Continue</button>
+        </div>
+    </div>
+
+    <div class="third-row">
+        <div class="action-buttons">
+            <div class="back-button" (click)="goBack()">
+                <img class="btn-img" src="usr_kiosk/assets/images/gun.svg" alt="">
+                <button><i class="far fa-arrow-left"> </i> Back</button>
+            </div>
+        </div>
+    </div>
 </div>
+
