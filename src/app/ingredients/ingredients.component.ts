@@ -4,6 +4,7 @@ import {Subscription, Observable, fromEvent} from 'rxjs';
 import {Store, select} from '@ngrx/store';
 import {updateOrder} from '../shared/ngrx/actions/order.action';
 import {Router} from '@angular/router';
+import {MenuService} from '../shared/services/menu.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -19,10 +20,12 @@ export class IngredientsComponent implements OnInit, OnDestroy {
   product;
   popupId = '';
   selectedSpec = '';
+  wraps: any[] = [];
 
 
   constructor(
     private orderStore: Store<{ orders: any[] }>,
+    private menuService: MenuService,
     private router: Router) {
     this.product = this.router.getCurrentNavigation().extras.state;
     console.log(this.product);
@@ -32,6 +35,12 @@ export class IngredientsComponent implements OnInit, OnDestroy {
     this.Subscriptions.push(
       this.orders$.subscribe((data) => {
         this.orders = JSON.parse(JSON.stringify(data));
+      })
+    );
+
+    this.Subscriptions.push(
+      this.menuService.getWraps().subscribe((data: any[]) => {
+        this.wraps = data;
       })
     );
   }
@@ -84,12 +93,14 @@ export class IngredientsComponent implements OnInit, OnDestroy {
   }
 
   makeOrder(prod) {
+    console.log(prod);
     this.orders.push(prod);
     this.orderStore.dispatch(updateOrder(JSON.parse(JSON.stringify({order: this.orders}))));
     this.router.navigateByUrl('/menu/products');
   }
-  selectwrap(wrap){
-    this.product.selectedWrap=wrap
+
+  selectWrap(wrap) {
+    this.product.selectedWrap = wrap;
   }
 
   increaseQty(prod, ind) {

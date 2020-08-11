@@ -103,30 +103,34 @@
           </div>
         </div>
         <div class="wraps" *ngIf="product.iswrap && !product.selectedWrap">
-          <div class="wrap">
-            <button (click)="selectwrap('Flour Tortilla')">Make it</button>
-            <span>Wrap it in a Flour Tortilla</span>
+          <div class="wrap" *ngFor="let wrap of wraps">
+            <button (click)="selectWrap(wrap.title)">Make it</button>
+            <span>Wrap it in a {{wrap.title}}</span>
           </div>
-          <div class="wrap" >
-            <button (click)="selectwrap('Basil Tortilla')">Make it</button>
-            <span>Wrap it in a Tomato and Basil Tortilla</span>
-          </div>
-          <div class="wrap">
-            <button (click)="selectwrap('Wheat Tortilla')">Make it</button>
-            <span>Wrap it in a Wheat Tortilla</span>
-          </div>
-          <div class="wrap">
-            <button (click)="selectwrap('In a Bowl')">Make it</button>
-            <span>Put it a Bowl</span>
-          </div>
-          <div class="wrap">
-            <button (click)="selectwrap('As Nachos')">Make it</button>
-            <span>Share it as Nachos with your Friends</span>
-          </div>
-          <div class="wrap">
-            <button (click)="selectwrap('Quesadilla')">Make it</button>
-            <span>Make it a Quesadilla</span>
-          </div>
+          <!--          <div class="wrap">-->
+          <!--            <button (click)="selectwrap('Flour Tortilla')">Make it</button>-->
+          <!--            <span>Wrap it in a Flour Tortilla</span>-->
+          <!--          </div>-->
+          <!--          <div class="wrap" >-->
+          <!--            <button (click)="selectwrap('Basil Tortilla')">Make it</button>-->
+          <!--            <span>Wrap it in a Tomato and Basil Tortilla</span>-->
+          <!--          </div>-->
+          <!--          <div class="wrap">-->
+          <!--            <button (click)="selectwrap('Wheat Tortilla')">Make it</button>-->
+          <!--            <span>Wrap it in a Wheat Tortilla</span>-->
+          <!--          </div>-->
+          <!--          <div class="wrap">-->
+          <!--            <button (click)="selectwrap('In a Bowl')">Make it</button>-->
+          <!--            <span>Put it a Bowl</span>-->
+          <!--          </div>-->
+          <!--          <div class="wrap">-->
+          <!--            <button (click)="selectwrap('As Nachos')">Make it</button>-->
+          <!--            <span>Share it as Nachos with your Friends</span>-->
+          <!--          </div>-->
+          <!--          <div class="wrap">-->
+          <!--            <button (click)="selectwrap('Quesadilla')">Make it</button>-->
+          <!--            <span>Make it a Quesadilla</span>-->
+          <!--          </div>-->
           <div class="footer">It’s Gonna Be Good!</div>
         </div>
 

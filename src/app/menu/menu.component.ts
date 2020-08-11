@@ -6,6 +6,7 @@ import {loadMenu} from '../shared/ngrx/actions/menu.action';
 import { Observable, Subscription } from 'rxjs';
 import { updateOrder } from '../shared/ngrx/actions/order.action';
 import {DestructComponent} from '../destruct/destruct.component';
+import {WebSocketService} from '../shared/services/websocket.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,6 +24,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     private router: Router,
     private menuStore: Store<{ menu: any[] }>,
     private orderStore: Store<{orders: any[]}>,
+    private webSocketService: WebSocketService
   ) {
     this.router.navigate(['menu/products']);
    }
@@ -39,7 +41,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     return orders.filter((o) => o.customizable === true);
   }
   makeOrder() {
+    console.log(this.orders)
     if (this.orders && this.orders.length) {
+      // this.webSocketService.emit('make_order', this.orders);
       this.router.navigate(['/menu/products', { outlets: { payment: ['start'] } }]);
     }
   }
