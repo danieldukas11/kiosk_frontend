@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {Socket} from 'ngx-socket-io';
 import {Observable} from 'rxjs';
 import {Store, select} from '@ngrx/store';
+import {OrdersService} from '../shared/services/orders.service';
 
 @Component({
   selector: 'app-payment',
@@ -22,27 +23,31 @@ export class PaymentComponent implements OnInit {
     total: 0,
     paid: 0,
     user_id: '',
-    status: ''
+    status: '',
+    order_num: 0
   };
   sub;
   route = 'tip';
   hasTip = false;
+  lastOrderNumber;
 
   constructor(
     private orderStore: Store<{ orders: any[] }>,
     private socket: Socket,
     private router: Router,
-    // private orderService: OrderS
+    private orderService: OrdersService
   ) {
 
   }
 
   ngOnInit() {
+    this.checkOrderNum();
     console.log('payment page');
     this.sub = this.orders$.subscribe((data) => {
       /*if (!data.length) {
         this.router.navigateByUrl('/');
       }*/
+
       console.log(data);
       if (data && data.length > 0) {
         this.orderData.orderedProducts = JSON.parse(JSON.stringify(data));
@@ -51,11 +56,27 @@ export class PaymentComponent implements OnInit {
         this.orderData.total = Math.round((this.orderData.subTotal + this.orderData.tax) * 100) / 100;
         this.orderData.user_id = data[0].user_id;
         this.orderData.status = 'pending';
+        // tslint:disable-next-line:variable-name
+        this.orderService.getOrdersNum().subscribe((number: any) => {
+          console.log(number);
+          this.lastOrderNumber = number;
+          console.log(this.lastOrderNumber);
+          this.orderData.order_num = this.lastOrderNumber + 1;
+          console.log('ORDER DATA');
+          console.log(this.orderData);
+          this.socket.emit('make_order', this.orderData);
+        });
+
       }
     });
-    console.log('ORDER DATA');
-    console.log(this.orderData);
-    this.socket.emit('make_order', this.orderData);
+
+  }
+
+  checkOrderNum() {
+    this.orderService.getOrdersNum().subscribe((number: any) => {
+      console.log(number);
+      this.lastOrderNumber = number;
+    });
   }
 
 
@@ -112,4 +133,6 @@ export class PaymentComponent implements OnInit {
     //   this.orders = dt;
     // });
   }
+
+
 }
