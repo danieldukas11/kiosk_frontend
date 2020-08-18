@@ -14,18 +14,18 @@
             margin-bottom:20px;
             font-size:18px;
             width: calc(100% - 20px);
-            
+
             .category_title{
                 position: relative;
                 vertical-align: top;
-                margin: auto;  
+                margin: auto;
                 text-align: center;
               div{
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 top:70px;
-                
+
               }
               .category_arrow{
                 position: relative;
@@ -36,7 +36,7 @@
                 }
             }
             }
-            
+
             .arrow{
                 width: 94px;
                 height: 42px;
@@ -55,13 +55,13 @@
                 .product{
                     display: inline-block;
                     width: 170px;
-                    height:180px;
+                    //height:180px;
                     margin:0 20px 20px 0;
                     vertical-align: top;
                     .image{
                         overflow: hidden;
                         width:170px;
-                        height: 110px;                        
+                        height: 110px;
                         vertical-align: top;
                         margin: auto;
                         img{
@@ -79,8 +79,8 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                         text-align:center;
-                       
-                        
+
+
                     }
                     .sizable_prices{
                         margin-top: 5px;
@@ -89,14 +89,14 @@
                         display: flex;
                         justify-content: space-between;
                     }
-                   
+
                     .small, .large{
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                      
+
                         .incr{
-                            
+
                             width:47px;
                             height: 60px;
                             display: flex;
@@ -116,12 +116,12 @@
                                     &:nth-child(2){
                                         transform: rotate(90deg);
                                         box-shadow: 3px -3px 7px #000000;
-                                        
+
                                     }
                                 }
                             }
-                            
-                            
+
+
                         }
                         .data{
                             border:1px solid #F2AC21;
@@ -173,12 +173,12 @@
                                     &:nth-child(2){
                                         transform: rotate(90deg);
                                         box-shadow: 3px -3px 5px #000000;
-                                        
+
                                     }
                                 }
                             }
-                            
-                            
+
+
                         }
 
                     }
