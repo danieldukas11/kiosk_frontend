@@ -10,12 +10,10 @@ export class WebSocketService {
   private socket;
 
   constructor() {
-    console.log(environment.socketUrl)
     this.socket = io(environment.socketUrl);
   }
 
   emit(eventName: string, data: any = {}) {
-    console.log('emitting')
     this.socket.emit(eventName, data);
   }
 

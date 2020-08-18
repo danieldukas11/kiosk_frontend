@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {Router} from '@angular/router';
+import {Store, select} from '@ngrx/store';
 import {loadMenu} from '../shared/ngrx/actions/menu.action';
-import { Observable, Subscription } from 'rxjs';
-import { updateOrder } from '../shared/ngrx/actions/order.action';
+import {Observable, Subscription} from 'rxjs';
+import {updateOrder} from '../shared/ngrx/actions/order.action';
 import {DestructComponent} from '../destruct/destruct.component';
 import {WebSocketService} from '../shared/services/websocket.service';
+import {SubjectService} from '../shared/services/subject.service';
+import local = chrome.storage.local;
 
 @Component({
   selector: 'app-menu',
@@ -20,33 +22,49 @@ export class MenuComponent implements OnInit, OnDestroy {
   orders$: Observable<any[]> = this.orderStore.pipe(select('orders'));
   sub: Subscription;
   tax = 5;
+
   constructor(
     private router: Router,
     private menuStore: Store<{ menu: any[] }>,
-    private orderStore: Store<{orders: any[]}>,
-    private webSocketService: WebSocketService
+    private orderStore: Store<{ orders: any[] }>,
+    private webSocketService: WebSocketService,
+    private subject: SubjectService
   ) {
     this.router.navigate(['menu/products']);
-   }
+  }
+
   ngOnInit() {
     this.menuStore.dispatch(loadMenu());
     this.sub = this.orders$.subscribe((data) => {
       this.orders = JSON.parse(JSON.stringify(data));
     });
+
+    this.subject.getOrderData().subscribe(data => {
+      this.orders = data;
+
+      // console.log(this.orders);
+    });
   }
+
   getOrders(orders: any[]) {
     return orders.filter((o) => o.customizable === false);
   }
+
   getCustomOrders(orders: any[]) {
     return orders.filter((o) => o.customizable === true);
   }
+
   makeOrder() {
-    console.log(this.orders)
+    console.log('making order');
     if (this.orders && this.orders.length) {
       // this.webSocketService.emit('make_order', this.orders);
-      this.router.navigate(['/menu/products', { outlets: { payment: ['start'] } }]);
+      console.log(this.orders);
+      localStorage.setItem('orders', JSON.stringify(this.orders));
+      this.subject.setOrderData(this.orders);
+      this.router.navigate(['/menu/products', {outlets: {payment: ['start']}, state: {hello: 'world'}}]);
     }
   }
+
   cancelAll() {
     this.router.navigateByUrl('/');
   }
@@ -65,23 +83,27 @@ export class MenuComponent implements OnInit, OnDestroy {
         });
       }
       if (order.sizable && order.customizable) {
-          order.sizes.forEach(s => {
-            price += s.price * s.qty;
-          });
+        order.sizes.forEach(s => {
+          price += s.price * s.qty;
+        });
       }
     });
     return Math.round(price * 100) / 100;
   }
+
   getTax(ammount, tax) {
     return Math.round((ammount * tax / 100) * 100) / 100;
   }
+
   getTotal(ammount, tax) {
     return Math.round((ammount + (ammount * tax / 100)) * 100) / 100;
   }
+
   resetTimer() {
-   // this.destruct.resetTimer();
+    // this.destruct.resetTimer();
 
   }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.orderStore.dispatch(updateOrder(JSON.parse(JSON.stringify({order: []}))));

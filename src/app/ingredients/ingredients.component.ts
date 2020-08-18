@@ -5,6 +5,7 @@ import {Store, select} from '@ngrx/store';
 import {updateOrder} from '../shared/ngrx/actions/order.action';
 import {Router} from '@angular/router';
 import {MenuService} from '../shared/services/menu.service';
+import {SubjectService} from '../shared/services/subject.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -26,9 +27,10 @@ export class IngredientsComponent implements OnInit, OnDestroy {
   constructor(
     private orderStore: Store<{ orders: any[] }>,
     private menuService: MenuService,
+    private subject: SubjectService,
     private router: Router) {
     this.product = this.router.getCurrentNavigation().extras.state;
-    console.log(this.product);
+    // console.log(this.product);
   }
 
   ngOnInit(): void {
@@ -93,9 +95,11 @@ export class IngredientsComponent implements OnInit, OnDestroy {
   }
 
   makeOrder(prod) {
-    console.log(prod);
+    console.log('make orders in ingredients!!!');
     this.orders.push(prod);
-    this.orderStore.dispatch(updateOrder(JSON.parse(JSON.stringify({order: this.orders}))));
+    console.log(this.orders);
+    this.subject.setOrderData(this.orders);
+    // this.orderStore.dispatch(updateOrder(JSON.parse(JSON.stringify({order: this.orders}))));
     this.router.navigateByUrl('/menu/products');
   }
 
